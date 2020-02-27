@@ -2,8 +2,8 @@
 /**
  * Write a description of class Invoice here.
  *
- * @author (your name)
- * @version (a version number or a date)
+ * @author Fadhilah Rheza P
+ * @version 1.0
  */
 public class Invoice
 {
@@ -11,13 +11,18 @@ public class Invoice
     private int idFood;
     private String date;
     private int totalPrice;
+    private Customer customer;
     
     /**
      * Constructor for objects of class Invoice
      */
-    public Invoice()
+    public Invoice(int id, int idFood, String date, int totalPrice, Customer customer)
     {
-        
+        this.id = id;
+        this.idFood = idFood;
+        this.date = date;
+        this.totalPrice = totalPrice;
+        this.customer = customer;
     }
 
     /**
@@ -28,41 +33,51 @@ public class Invoice
      */
     public int getId()
     {
-        return 0;
+        return id;
     }
     
     public int getIdFood()
     {
-        return 0;
+        return idFood;
     }
     
     public String getDate()
     {
-        return "oke";
+        return date;
     }
     
     public int getTotalPrice()
     {
-        return 0;
+        return totalPrice;
+    }
+    
+    public Customer getCustomer()
+    {
+        return customer;
     }
     
     public void setId(int id)
     {
-    
+        this.id = id;
     }
     
     public void setIdFoods(int Food)
     {
-    
+        this.idFood = idFood;
     }
     
     public void setDate(String date)
     {
-    
+        this.date = date;
     }
     
-    public void seTotalPrice(int totalPrice)
+    public void setTotalPrice(int totalPrice)
     {
+        this.totalPrice = totalPrice;
+    }
     
+    public void setCustomer(Customer customer)
+    {
+        this.customer = customer;
     }
 }

@@ -1,28 +1,28 @@
 
 /**
- * Write a description of class Seller here.
+ * Write a description of class Costumer here.
  *
  * @author Fadhilah Rheza P
  * @version 1.0
  */
-public class Seller
+public class Customer
 {
     private int id;
     private String name;
     private String email;
-    private String phoneNumber;
-    private Location location;
+    private String password;
+    private String joinDate;
 
     /**
-     * Constructor for objects of class Seller
+     * Constructor for objects of class Costumer
      */
-    public Seller(int id, String name, String email, String phoneNumber, Location location)
+    public Customer(int id, String name, String email, String password, String joinDate)
     {
         this.id = id;
         this.name = name;
         this.email = email;
-        this.phoneNumber = phoneNumber;
-        this.location = location;
+        this.password = password;
+        this.joinDate = joinDate;
     }
 
     /**
@@ -46,15 +46,14 @@ public class Seller
         return email;
     }
     
-    public String getPhoneNumber()
+    public String getPassword()
     {
-        return phoneNumber;
+        return password;
     }
     
-    
-    public Location getLocation()
+    public String getJoinDate()
     {
-        return location;
+        return joinDate;
     }
     
     public void setId(int id)
@@ -72,17 +71,17 @@ public class Seller
         this.email = email;
     }
     
-    public void setPhoneNumber(String phoneNumber)
+    public void setPassword(String password)
     {
-        this.phoneNumber = phoneNumber;
+        this.password = password;
     }
     
-    public void setLocation(Location location)
+    public void setJoinDate(String joinDate)
     {
-        this.location = location;
+        this.joinDate = joinDate;
     }
     
-    public void printData()
+    public void printname()
     {
         System.out.println(name);
     }
