@@ -143,6 +143,6 @@ public class Invoice
      */
     public void printData()
     {
-        System.out.println(idFood);
+        System.out.println(totalPrice);
     }
 }

@@ -144,6 +144,16 @@ public class Seller
      */
     public void printData()
     {
+        System.out.println(id + name + email + phoneNumber + location);
+    }
+    
+    /**
+     * To print out (printName)
+     * 
+     * @param name is used
+     */
+    public void printName()
+    {
         System.out.println(name);
     }
 }
