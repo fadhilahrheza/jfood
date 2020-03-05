@@ -10,22 +10,18 @@ public class DatabaseSeller
     /**
      * Below are the variable for class Customer
      */
-    private String[] listSeller;
+    private static String[] listSeller;
 
     /**
      * Constructor for objects of class DatabaseSeller
      */
-    public DatabaseSeller()
-    {
-        this.listSeller = listSeller;
-    }
 
    /**
      * Adding Seller
      *
      * @return boolean to true, if food was added
-     */
-    public boolean addSeller(Seller seller)
+     */ 
+    public static boolean addSeller(Seller seller)
     {
         return true;
     }
@@ -35,13 +31,13 @@ public class DatabaseSeller
      *
      * @return boolean to true, if food was removed
      */
-    public boolean removeSeller(Seller seller)
+    public static boolean removeSeller(Seller seller)
     {
         return true;
     }
     
     //return food passed to the constructor
-    public Seller getSeller()
+    public static Seller getSeller()
     {
         return null;
     }
@@ -51,7 +47,7 @@ public class DatabaseSeller
      *
      * @return listFood
      */
-    public String[] getListSeller()
+    public static String[] getListSeller()
     {
         return listSeller;
     }

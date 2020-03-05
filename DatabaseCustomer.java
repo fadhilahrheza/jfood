@@ -1,18 +1,14 @@
 
 /**
- * Here is the class DatabaseFood.
- * Inside this class, contains the list of food in the database.
+ * Write a description of class DatabaseCustomer here.
  *
- * @author Fadhilah Rheza P
- * @version 1.0
- * @since 2020-02-27
+ * @author (your name)
+ * @version (a version number or a date)
  */
-public class DatabaseFood
+public class DatabaseCustomer
 {
-    /**
-     * Below are the variable for class Customer
-     */
-    private static String[] listFood;
+    // instance variables - replace the example below with your own
+    private static String[] listCustomer;
 
     /**
      * Constructor for objects of class DatabaseFood
@@ -22,11 +18,11 @@ public class DatabaseFood
     
 
     /**
-     * Adding food
+     * Adding Customer
      *
      * @return boolean to true, if food was added
      */
-    public static boolean addFood(Food food)
+    public static boolean addCustomer(Customer customer)
     {
         return true;
     }
@@ -36,13 +32,13 @@ public class DatabaseFood
      *
      * @return boolean to true, if food was removed
      */
-    public static boolean removeFood(Food food)
+    public static boolean removeCustomer(Customer customer)
     {
         return true;
     }
     
     //return food passed to the constructor
-    public static Food getFood()
+    public static Customer getCustomer()
     {
         return null;
     }
@@ -52,8 +48,8 @@ public class DatabaseFood
      *
      * @return listFood
      */
-    public static String[] getListFood()
+    public static String[] getListCustomer()
     {
-        return listFood;
+        return listCustomer;
     }
 }
