@@ -6,12 +6,13 @@
         
         Seller selObj = new Seller(1706042863, "Fadhilah Rheza P", "eja.fadhil@gmail.com", "085817661578", locObj);
         
-        Food foodObj = new Food(1, "Hamburger", selObj, 30000, FoodCategory.Western);
+        Food foodObj = new Food(1, "Hamburger", selObj, 45000, FoodCategory.Western);
         
-        Customer cusObj = new Customer(12, "Ika", "ik.kw@gmail.com", "patapon", "12 Juni 2020");
+        Customer cusObj = new Customer(11, "Timothy", "tim.tim@gmail.com", "patapon", "12 Juni 2020");
         
-        Invoice invObj = new Invoice(17, 13, "18 Maret 2020", 20, cusObj);
+        Invoice invObj = new Invoice(1, foodObj.getId(), "2020-01-01", foodObj.getPrice(), cusObj, InvoiceStatus.Finished);
       
-        foodObj.printData();
+        
+        invObj.printData();
     }
 }
