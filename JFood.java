@@ -10,9 +10,6 @@
         
         Customer cusObj = new Customer(11, "Timothy", "tim.tim@gmail.com", "patapon", "12 Juni 2020");
         
-        Invoice invObj = new Invoice(1, foodObj.getId(), "2020-01-01", foodObj.getPrice(), cusObj, InvoiceStatus.Finished);
       
-        
-        invObj.printData();
     }
 }
