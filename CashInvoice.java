@@ -1,22 +1,22 @@
 
 /**
- * Write a description of class CashlessInvoice here.
+ * Write a description of class CashInvoice here.
  *
  * @author (your name)
  * @version (a version number or a date)
  */
-public class CashlessInvoice extends Invoice
+public class CashInvoice extends Invoice
 {
     /**
-     * Below are the variable for class CashlessInvoice
+     * Below are the variable for class CashInvoice
      */
-    private static final PaymentType PAYMENT_TYPE = PaymentType.Cashless;
-    private Promo promo ;
+    private static final PaymentType PAYMENT_TYPE = PaymentType.Cash;
+    private int deliveryFee ;
 
     /**
      * Constructor no.1
      */
-    public CashlessInvoice(int id, Food food, String date, Customer customer, InvoiceStatus invoiceStatus)
+    public CashInvoice(int id, Food food, String date, Customer customer, InvoiceStatus invoiceStatus)
     {
         super(id, food, date, customer, invoiceStatus);
     }
@@ -24,14 +24,14 @@ public class CashlessInvoice extends Invoice
     /**
      * Constructor no.2
      */
-    public CashlessInvoice(int id, Food food, String date, Customer customer, InvoiceStatus invoiceStatus, Promo promo)
+    public CashInvoice(int id, Food food, String date, Customer customer, InvoiceStatus invoiceStatus, int deliveryFee)
     {
         super(id, food, date, customer, invoiceStatus);
-        this.promo = promo;
+        this.deliveryFee = deliveryFee;
     }
 
     /**
-     * Gets the paymentType of the CashlessInvoice
+     * Gets the paymentType of the CashInvoice
      *
      * @return paymentType
      */
@@ -41,35 +41,35 @@ public class CashlessInvoice extends Invoice
     }
     
     /**
-     * Gets the Promo of the CashlessInvoice
+     * Gets the DeliveryFee of the CashInvoice
      *
-     * @return promo
+     * @return deliveryFee
      */
-    public Promo getPromo()
+    public int getDeliveryFee()
     {
-        return promo;
+        return deliveryFee;
     }
     
     /**
-     * Sets the id of the promo
+     * Sets the deliveryFee of the CashInvoice
      * 
-     * @param promo
+     * @param int
      */
-    public void setPromo(Promo promo)
+    public void setDeliveryFee(int deliveryFee)
     {
-        this.promo = promo;
+        this.deliveryFee = deliveryFee;
     }
     
     /**
-     * Sets the TotalPrice of the CashlessInvoice
+     * Sets the TotalPrice of the CashInvoice
      * 
      * @param TotalPrice
      */
     public void setTotalPrice()
     {
-        if ((promo != null) && (getFood().getPrice() > getPromo().getMinPrice()) && (getPromo().getActive() == true))
+        if (deliveryFee > 0)
         {
-            super.totalPrice = (getFood().getPrice()) - (getPromo().getDiscount());
+            super.totalPrice = (getFood().getPrice()) + getDeliveryFee();
         }
         else
         {
@@ -79,17 +79,17 @@ public class CashlessInvoice extends Invoice
     
     public void printData()
     {
-        if ((promo != null) && (getPromo().getActive() == true) && (getFood().getPrice() < promo.getMinPrice()))
+        if (deliveryFee > 0)
         {
             System.out.println("==========INVOICE==========");
             System.out.println("ID:"+super.getId());
             System.out.println("Food:"+super.getFood().getName());
             System.out.println("Date:"+super.getDate());
             System.out.println("Customer:"+super.getCustomer().getName());
+            System.out.println("Delivery Fee:"+getDeliveryFee());
             System.out.println("Total Price:"+super.getTotalPrice());
             System.out.println("Status:"+super.getInvoiceStatus());
             System.out.println("Payment Type:"+PAYMENT_TYPE);
-            System.out.println("Promo:"+getPromo().getCode());
         }
         else
         {
@@ -98,6 +98,7 @@ public class CashlessInvoice extends Invoice
             System.out.println("Food:"+super.getFood().getName());
             System.out.println("Date:"+super.getDate());
             System.out.println("Customer:"+super.getCustomer().getName());
+            System.out.println("Delivery Fee:"+getDeliveryFee());
             System.out.println("Total Price:"+super.getTotalPrice());
             System.out.println("Status:"+super.getInvoiceStatus());
             System.out.println("Payment Type:"+PAYMENT_TYPE);

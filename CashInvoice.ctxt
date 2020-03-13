@@ -1,0 +1,24 @@
+#BlueJ class context
+comment0.target=CashInvoice
+comment0.text=\r\n\ Write\ a\ description\ of\ class\ CashInvoice\ here.\r\n\r\n\ @author\ (your\ name)\r\n\ @version\ (a\ version\ number\ or\ a\ date)\r\n
+comment1.params=id\ food\ date\ customer\ invoiceStatus
+comment1.target=CashInvoice(int,\ Food,\ java.lang.String,\ Customer,\ InvoiceStatus)
+comment1.text=\r\n\ Constructor\ no.1\r\n
+comment2.params=id\ food\ date\ customer\ invoiceStatus\ deliveryFee
+comment2.target=CashInvoice(int,\ Food,\ java.lang.String,\ Customer,\ InvoiceStatus,\ int)
+comment2.text=\r\n\ Constructor\ no.2\r\n
+comment3.params=
+comment3.target=PaymentType\ getPaymentType()
+comment3.text=\r\n\ Gets\ the\ paymentType\ of\ the\ CashInvoice\r\n\r\n\ @return\ paymentType\r\n
+comment4.params=
+comment4.target=int\ getDeliveryFee()
+comment4.text=\r\n\ Gets\ the\ DeliveryFee\ of\ the\ CashInvoice\r\n\r\n\ @return\ deliveryFee\r\n
+comment5.params=deliveryFee
+comment5.target=void\ setDeliveryFee(int)
+comment5.text=\r\n\ Sets\ the\ deliveryFee\ of\ the\ CashInvoice\r\n\ \r\n\ @param\ int\r\n
+comment6.params=
+comment6.target=void\ setTotalPrice()
+comment6.text=\r\n\ Sets\ the\ TotalPrice\ of\ the\ CashInvoice\r\n\ \r\n\ @param\ TotalPrice\r\n
+comment7.params=
+comment7.target=void\ printData()
+numComments=8
