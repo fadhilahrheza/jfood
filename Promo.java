@@ -14,7 +14,7 @@ public class Promo
      */
     private int id;
     private String code;
-    private int  discount;
+    private int discount;
     private int minPrice;
     private boolean active;
 

@@ -67,9 +67,9 @@ public class CashlessInvoice extends Invoice
      */
     public void setTotalPrice()
     {
-        if (promo != null && getFood().getPrice() >= promo.getMinPrice() && promo.getActive() == true)
+        if ((promo != null) && (getFood().getPrice() > getPromo().getMinPrice()) && (getPromo().getActive() == true))
         {
-            super.totalPrice = getFood().getPrice() - promo.getDiscount();
+            super.totalPrice = (getFood().getPrice()) - (getPromo().getDiscount());
         }
         else
         {
@@ -79,28 +79,28 @@ public class CashlessInvoice extends Invoice
     
     public void printData()
     {
-        if (promo == null || promo.getActive() == false || getFood().getPrice() < promo.getMinPrice())
+        if ((promo != null) && (getPromo().getActive() == true) && (getFood().getPrice() < promo.getMinPrice()))
         {
             System.out.println("==========INVOICE==========");
             System.out.println("ID:"+super.getId());
-            System.out.println("Food:"+super.getFood());
+            System.out.println("Food:"+super.getFood().getName());
             System.out.println("Date:"+super.getDate());
             System.out.println("Customer:"+super.getCustomer().getName());
             System.out.println("Total Price:"+super.getTotalPrice());
             System.out.println("Status:"+super.getInvoiceStatus());
             System.out.println("Payment Type:"+PAYMENT_TYPE);
+            System.out.println("Promo:"+getPromo().getCode());
         }
         else
         {
             System.out.println("==========INVOICE==========");
             System.out.println("ID:"+super.getId());
-            System.out.println("Food:"+super.getFood());
+            System.out.println("Food:"+super.getFood().getName());
             System.out.println("Date:"+super.getDate());
             System.out.println("Customer:"+super.getCustomer().getName());
-            System.out.println("Promo:"+promo);
             System.out.println("Total Price:"+super.getTotalPrice());
             System.out.println("Status:"+super.getInvoiceStatus());
             System.out.println("Payment Type:"+PAYMENT_TYPE);
-        }
+        } 
     }
 }
