@@ -147,6 +147,11 @@ public class Seller
         System.out.println(id + name + email + phoneNumber + location);
     }
     
+    public String toString()
+    {
+        return "Id = " + getId() + "\nNama = " + getName() + "\nPhone Number = " + getPhoneNumber() + "\nLocation = " + getLocation();
+    }
+    
     /**
      * To print out (printName)
      * 

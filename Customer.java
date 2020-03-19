@@ -1,4 +1,9 @@
-
+import java.util.*;
+import java.util.regex.*;
+import java.lang.Object;
+import java.text.Format;
+import java.text.DateFormat;
+import java.text.SimpleDateFormat;
 /**
  * Here is the class Customer.
  * Inside this class, contains data of the customer.
@@ -16,24 +21,41 @@ public class Customer
     private String name;
     private String email;
     private String password;
-    private String joinDate;
+    private Calendar joinDate;
 
     /**
-     * Constructor for objects of class Customer
-     * 
-     * @param id (customer's id)
-     * @param name (customer's name)
-     * @param email (customer's email)
-     * @param password (customer's password)
-     * @param joinDate (customer's join date)
+     * Constructor no.1 for objects of class Customer
      */
-    public Customer(int id, String name, String email, String password, String joinDate)
+    public Customer(int id, String name, String email, String password, Calendar joinDate)
     {
         this.id = id;
         this.name = name;
         this.email = email;
         this.password = password;
         this.joinDate = joinDate;
+    }
+    
+    /**
+     * Constructor no.2 for objects of class Customer
+     */
+    public Customer(int id, String name, String email, String password, int year, int month, int dayOfMonth)
+    {
+        this.id = id;
+        this.name = name;
+        this.email = email;
+        this.password = password;
+        this.joinDate = new GregorianCalendar(year, month-1, dayOfMonth);
+    }
+    
+    /**
+     * Constructor no.3 for objects of class Customer
+     */
+    public Customer(int id, String name, String email, String password)
+    {
+        this.id = id;
+        this.name = name;
+        this.email = email;
+        this.password = password;
     }
 
     /**
@@ -81,7 +103,7 @@ public class Customer
      *
      * @return joinDate
      */
-    public String getJoinDate()
+    public Calendar getJoinDate()
     {
         return joinDate;
     }
@@ -113,7 +135,17 @@ public class Customer
      */
     public void setEmail(String email)
     {
-        this.email = email;
+        String regexemail = "^[\\w!#$%’+/=?`{|~^-]+(?:\\.[\\w!#$%’+/=?`{|}^-]+)*@(?:[a-zA-Z0-9-]+\\.)+[a-zA-Z]{2,6}$";
+        Pattern pattern = Pattern.compile(regexemail);
+        Matcher match = pattern.matcher(email);
+        if(match.find())
+        {
+            this.email = email;
+        }
+        else
+        {
+            this.email = "";
+        }
     }
     
     /**
@@ -123,7 +155,17 @@ public class Customer
      */
     public void setPassword(String password)
     {
-        this.password = password;
+        String regexpassword = "^(?=.*[a-z])(?=.*[A-Z])(?=.*[0-9])[A-Za-z\\d]{6,}$";
+        Pattern pattern = Pattern.compile(regexpassword);
+        Matcher match = pattern.matcher(password);
+        if(match.find())
+        {
+            this.password = password;
+        }
+        else
+        {
+            this.password = "";
+        }
     }
     
     /**
@@ -131,9 +173,19 @@ public class Customer
      * 
      * @param joinDate
      */
-    public void setJoinDate(String joinDate)
+    public void setJoinDate(Calendar joinDate)
     {
         this.joinDate = joinDate;
+    }
+    
+    /**
+     * Sets the join date of the customer
+     * 
+     * @param joinDate
+     */
+    public void setJoinDate(int year, int month, int dayOfMonth)
+    {
+        this.joinDate = new GregorianCalendar(year, month-1, dayOfMonth);
     }
     
     /**
@@ -144,5 +196,16 @@ public class Customer
     public void printname()
     {
         System.out.println(name);
+    }
+    
+    public String toString()
+    {
+        String date = "";
+        SimpleDateFormat sdf = new SimpleDateFormat("dd MMMM yyyy");
+        if(getJoinDate() != null)
+        {
+            date = sdf.format(joinDate.getTime());
+        }
+        return "Id = " + getId() + "\nNama = " + getName() + "\nEmail = " + getEmail() + "\nPassword = " + getPassword() + "\nJoin Date = " + getJoinDate();
     }
 }

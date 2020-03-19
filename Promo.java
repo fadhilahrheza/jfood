@@ -136,6 +136,11 @@ public class Promo
         this.active = active;
     }
     
+    public String toString()
+    {
+        return "Id = " + getId() + "\nCode = " + getCode() + "\nDiscount = " + getDiscount() + "\nMinPrice = " + getMinPrice() + "\nActive Status = " + getActive();
+    }
+    
     /**
      * To print out (printData)
      * 

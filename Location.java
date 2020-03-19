@@ -91,6 +91,11 @@ public class Location
         this.description = description;
     }
     
+    public String toString()
+    {
+        return "Province = " + getProvince() + "\nCity = " + getCity() + "\nDescription = " + getDescription();
+    }
+    
     /**
      * To print out (printData)
      * 

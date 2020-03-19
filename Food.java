@@ -136,6 +136,11 @@ public class Food
         this.category = category;
     }
     
+    public String toString()
+    {
+        return "Id = " + getId() + "\nNama = " + getName() + "\nSeller = " + getSeller().getName() + "\nCity = " + getSeller().getLocation().getCity() + "\nPrice = " + getPrice() + "\nCategory = " + getCategory();
+    }
+    
     /**
      * To print out (printData)
      * 
