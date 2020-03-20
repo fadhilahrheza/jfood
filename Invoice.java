@@ -1,3 +1,9 @@
+import java.util.*;
+import java.util.regex.*;
+import java.lang.Object;
+import java.text.Format;
+import java.text.DateFormat;
+import java.text.SimpleDateFormat;
 /**
  * Here is the class Invoice.
  * Inside this class, contains invoice data.
@@ -13,7 +19,7 @@ public abstract class Invoice
      */
     private int id;
     private Food food;
-    private String date;
+    private Calendar date;
     protected int totalPrice;
     private Customer customer;
     private InvoiceStatus invoiceStatus;
@@ -27,11 +33,11 @@ public abstract class Invoice
      * @param totalprice (invoice's total price)
      * @param customer (invoice's customer)
      */
-    public Invoice(int id, Food food, String date, Customer customer, InvoiceStatus invoiceStatus)
+    public Invoice(int id, Food food, Customer customer, InvoiceStatus invoiceStatus)
     {
         this.id = id;
         this.food = food;
-        this.date = date;
+        this.date = Calendar.getInstance();
         this.customer = customer;
         this.invoiceStatus = invoiceStatus;
     }
@@ -61,7 +67,7 @@ public abstract class Invoice
      *
      * @return date
      */
-    public String getDate()
+    public Calendar getDate()
     {
         return date;
     }
@@ -128,9 +134,19 @@ public abstract class Invoice
      * 
      * @param date
      */
-    public void setDate(String date)
+    public void setDate(Calendar date)
     {
         this.date = date;
+    }
+    
+    /**
+     * Sets the date of the invoice
+     * 
+     * @param date
+     */
+    public void setDate(int year, int month, int dayOfMonth)
+    {
+        this.date = new GregorianCalendar(year, month-1,dayOfMonth);
     }
     
     /**
@@ -165,5 +181,5 @@ public abstract class Invoice
      * 
      * @param idFood is used
      */
-    public abstract void printData();
+    public abstract String toString();;
 }
