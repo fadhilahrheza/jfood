@@ -14,20 +14,14 @@ import java.text.SimpleDateFormat;
         Seller selObj = new Seller(1706042863, "Fadhilah Rheza P", "eja.fadhil@gmail.com", "085817661578", locObj);
         
         //Food foodObj1 = new Food(1, "Martabak", selObj, 50000, FoodCategory.Western);
-        
         //Food foodObj2 = new Food(2, "Gorengan", selObj, 5000, FoodCategory.Western);
-        
         //Food foodObj3 = new Food(3, "Martabak", selObj, 50000, FoodCategory.Western);
-        
         //Food foodObj4 = new Food(4, "Martabak", selObj, 15000, FoodCategory.Western);
-        
         //Food foodObj5 = new Food(5, "Martabak", selObj, 15000, FoodCategory.Western);
         
-        Customer cusObj1 = new Customer(11, "Timothy", "tim@gmail.com", "Lol456", new GregorianCalendar(2020, 3, 10));
-        
-        Customer cusObj2 = new Customer(11, "Jony Jony", "John_Yeet@gmail.com", "Pata12", 2020, 3, 10);
-        
-        Customer cusObj3 = new Customer(11, "Jony Jony", "John_Yeet@gmail.com", "Pata12");
+        Customer cusObj1 = new Customer(11, "Timothy", "..tim@gmail.com", "12345", new GregorianCalendar(2020, 0, 10));
+        Customer cusObj2 = new Customer(12, "Jony Jony", "John@gmail.com", "Pata12", 2020, 3, 10);
+        Customer cusObj3 = new Customer(11, "Freya", "Freya24@gmail.com", "Jormund1", 2020, 5, 12);
         
         System.out.println(cusObj1.toString());
         System.out.println(cusObj2.toString());

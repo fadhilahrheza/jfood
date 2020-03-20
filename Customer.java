@@ -30,8 +30,8 @@ public class Customer
     {
         this.id = id;
         this.name = name;
-        this.email = email;
-        this.password = password;
+        setEmail(email);
+        setPassword(password);
         this.joinDate = joinDate;
     }
     
@@ -42,8 +42,8 @@ public class Customer
     {
         this.id = id;
         this.name = name;
-        this.email = email;
-        this.password = password;
+        setEmail(email);
+        setPassword(password);
         this.joinDate = new GregorianCalendar(year, month-1, dayOfMonth);
     }
     
@@ -54,8 +54,8 @@ public class Customer
     {
         this.id = id;
         this.name = name;
-        this.email = email;
-        this.password = password;
+        setEmail(email);
+        setPassword(password);
     }
 
     /**
@@ -135,7 +135,7 @@ public class Customer
      */
     public void setEmail(String email)
     {
-        String regexemail = "^[\\w!#$%’+/=?`{|~^-]+(?:\\.[\\w!#$%’+/=?`{|}^-]+)*@(?:[a-zA-Z0-9-]+\\.)+[a-zA-Z]{2,6}$";
+        String regexemail = "^(?!\\.)(?!.*\\.$)(?!.*\\.\\.$)[\\w\\.&*_~]+@(.+)+$";
         Pattern pattern = Pattern.compile(regexemail);
         Matcher match = pattern.matcher(email);
         if(match.find())
@@ -155,7 +155,7 @@ public class Customer
      */
     public void setPassword(String password)
     {
-        String regexpassword = "^(?=.*[a-z])(?=.*[A-Z])(?=.*[0-9])[A-Za-z\\d]{6,}$";
+        String regexpassword = "^(?=.*[A-Z])(?=.*[a-z])(?=.*[0-9])[A-Za-z\\d]{6,}$";
         Pattern pattern = Pattern.compile(regexpassword);
         Matcher match = pattern.matcher(password);
         if(match.find())
@@ -206,6 +206,11 @@ public class Customer
         {
             date = sdf.format(joinDate.getTime());
         }
-        return "Id = " + getId() + "\nNama = " + getName() + "\nEmail = " + getEmail() + "\nPassword = " + getPassword() + "\nJoin Date = " + getJoinDate();
+        return
+        "\nID:"+getId()+
+        "\nName:"+getName()+
+        "\nEmail:"+getEmail()+
+        "\nPassword:"+getPassword()+
+        "\nJoin Date:"+date;
     }
 }
