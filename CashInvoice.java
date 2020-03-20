@@ -83,39 +83,37 @@ public class CashInvoice extends Invoice
         }
     }
     
-    public String toString()
-    {
-        String date0 = "";
-        SimpleDateFormat dateFormat = new SimpleDateFormat("dd MMMM yyyy");
-        if(super.getDate() != null)
+   public String toString()
         {
-            date0 = dateFormat.format(getDate().getTime());
-        }
 
-        if(deliveryFee != 0)
-        {
-            return "==========INVOICE==========" + 
-                   "\nID: " + super.getId() +
-                   "\nFood: " + super.getFood().getName() +
-                   "\nDate: " + date0 + 
-                   "\nCustomer: " + super.getCustomer().getName() +
-                   "\nDelivery Fee: " + getDeliveryFee() + 
-                   "\nTotal Price: " + super.getTotalPrice() +
-                   "\nInvoice Status: " + super.getInvoiceStatus() +
-                   "\nPayment Type: " + PAYMENT_TYPE;
-        }
+            SimpleDateFormat format1 = new SimpleDateFormat("dd MMMM yyyy");
+            String date = format1.format(getDate().getTime());
+            if (getDeliveryFee() != 0)
+            {
 
-        else
-        {
-             return "==========INVOICE==========" + 
-                   "\nID: " + super.getId() +
-                   "\nFood: " + super.getFood().getName() +
-                   "\nDate: " + date0 + 
-                   "\nCustomer: " + super.getCustomer().getName() +
-                   "\nDelivery Fee: 0" + 
-                   "\nTotal Price: " + super.getTotalPrice() +
-                   "\nInvoice Status: " + super.getInvoiceStatus() +
-                   "\nPayment Type: " + PAYMENT_TYPE;
-        }
+                return "================Invoice================" + "\n" +
+                       "ID: " + getId() + "\n" +
+                       "Name: " + getFood().getName() + "\n" +
+                       "Date: " + date + "\n" +
+                       "Customer: " + getCustomer().getName() + "\n" +
+                       "Total Price: " + totalPrice + "\n" +
+                       "Status: " + getInvoiceStatus() + "\n" +
+                       "Payment Type: " + getPaymentType() + "\n" +
+                       "Delivery Fee: " + getDeliveryFee();
+
+            }
+            else
+            {
+
+                return "================Invoice================" + "\n" +
+                       "ID: " + getId() + "\n" +
+                       "Name: " + getFood().getName() + "\n" +
+                       "Date: " + date + "\n" +
+                       "Customer: " + getCustomer().getName() + "\n" +
+                       "Total Price: " + totalPrice + "\n" +
+                       "Status: " + getInvoiceStatus() + "\n" +
+                       "Payment Type: " + getPaymentType();
+
+            }
     }
 }
