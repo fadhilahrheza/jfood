@@ -14,7 +14,7 @@ public class DatabaseFood
     /**
      * Below are the variable for class Customer
      */
-    private static ArrayList<Food> FOOD_DATABASE;
+    private static ArrayList<Food> FOOD_DATABASE = new ArrayList<Food>();
     private static int lastid = 0;
 
     /**

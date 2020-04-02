@@ -11,7 +11,7 @@ public class DatabaseSeller
     /**
      * Below are the variable for class Customer
      */
-    private static ArrayList<Seller> SELLER_DATABASE;
+    private static ArrayList<Seller> SELLER_DATABASE = new ArrayList<Seller>();
     private static int lastid = 0;
 
     /**

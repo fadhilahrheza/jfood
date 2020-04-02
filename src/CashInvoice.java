@@ -108,6 +108,6 @@ public class CashInvoice extends Invoice
                     "Total Price: " + totalPrice + "\n" +
                     "Status: " + getInvoiceStatus() + "\n" +
                     "Payment Type: " + getPaymentType() + "\n" +
-                    "Delivery Fee: " + getDeliveryFee();
+                    "Delivery Fee: " + getDeliveryFee() + "\n";
     }
 }

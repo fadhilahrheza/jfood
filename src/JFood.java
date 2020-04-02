@@ -72,7 +72,7 @@ import java.text.SimpleDateFormat;
 
         basedatabasefood.addFood(new Food(1, "Paket Sehat Bahari 1", basedatabaseseller.getSellerById(1), 15000, FoodCategory.Beverages));
         basedatabasefood.addFood(new Food(2, "Paket Sehat Bahari 2", basedatabaseseller.getSellerById(1), 3000, FoodCategory.Beverages));
-        basedatabasefood.addFood(new Food(3, "Paket Sehat Bahari 3", basedatabaseseller.getSellerById(1), 5000, FoodCategory.Japanese));
+        basedatabasefood.addFood(new Food(3, "Paket Sehat Bahari 3", basedatabaseseller.getSellerById(1), 5000, FoodCategory.Beverages));
 
         System.out.println(basedatabasefood.getFoodByCategory(FoodCategory.Beverages));
     }
