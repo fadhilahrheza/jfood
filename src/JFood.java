@@ -1,3 +1,4 @@
+import javax.xml.crypto.Data;
 import java.util.*;
 import java.util.regex.*;
 import java.lang.Object;
@@ -58,21 +59,36 @@ import java.text.SimpleDateFormat;
         DatabaseSeller basedatabaseseller = new DatabaseSeller();
         DatabaseFood basedatabasefood = new DatabaseFood();
         DatabaseCustomer basedatabasecustomer = new DatabaseCustomer();
+        DatabasePromo basedatapromo = new DatabasePromo();
 
         Location baselocation = new Location("Jakarta Selatan", "Sepi", "DKI Jakarta");
 
+        basedatapromo.addPromo(new Promo(DatabasePromo.getLastid()+1, "YEET", 10000, 15000, false));
+        basedatapromo.addPromo(new Promo(DatabasePromo.getLastid()+1, "YEET", 15000, 25000, true));
+
+        System.out.println(basedatapromo.getPromoDatabase());
+
+        ArrayList<Food> one = new ArrayList<Food>();
+        one.add(DatabaseFood.getFoodById(1));
+        one.add(DatabaseFood.getFoodById(2));
+
+        ArrayList<Food> dua = new ArrayList<Food>();
+        one.add(DatabaseFood.getFoodById(3));
+        one.add(DatabaseFood.getFoodById(2));
+
+        DatabaseInvoice.addInvoice(new CashInvoice(1, one, DatabaseCustomer.getCustomerById(1)));
+
         basedatabaseseller.addSeller(new Seller(1, "EJA", "eja@gmail.com", "085817661578", baselocation));
 
-
-        basedatabasecustomer.addCustomer(new Customer(1, "EJA", "eja@gmail.com", "1234", new GregorianCalendar(2020, 3, 1)));
-        basedatabasecustomer.addCustomer(new Customer(2, "EJA", "eja@gmail.com", "Abcd1234", 2020, 3, 2));
-        basedatabasecustomer.addCustomer(new Customer(3, "Rama", "rama@gmail.com", ""));
+        basedatabasecustomer.addCustomer(new Customer(DatabaseCustomer.getLastid()+1, "EJA", "eja@gmail.com", "1234", new GregorianCalendar(2020, 3, 1)));
+        basedatabasecustomer.addCustomer(new Customer(DatabaseCustomer.getLastid()+1, "EJA", "eja@gmail.com", "Abcd1234", 2020, 3, 2));
+        basedatabasecustomer.addCustomer(new Customer(DatabaseCustomer.getLastid()+1, "Rama", "rama@gmail.com", ""));
 
         System.out.println(basedatabasecustomer.getCustomerDatabase());
 
-        basedatabasefood.addFood(new Food(1, "Paket Sehat Bahari 1", basedatabaseseller.getSellerById(1), 15000, FoodCategory.Beverages));
-        basedatabasefood.addFood(new Food(2, "Paket Sehat Bahari 2", basedatabaseseller.getSellerById(1), 3000, FoodCategory.Beverages));
-        basedatabasefood.addFood(new Food(3, "Paket Sehat Bahari 3", basedatabaseseller.getSellerById(1), 5000, FoodCategory.Beverages));
+        basedatabasefood.addFood(new Food(DatabaseFood.getLastId()+1, "Paket Sehat Bahari 1", basedatabaseseller.getSellerById(1), 15000, FoodCategory.Beverages));
+        basedatabasefood.addFood(new Food(DatabaseFood.getLastId()+1, "Paket Sehat Bahari 2", basedatabaseseller.getSellerById(1), 3000, FoodCategory.Beverages));
+        basedatabasefood.addFood(new Food(DatabaseFood.getLastId()+1, "Paket Sehat Bahari 3", basedatabaseseller.getSellerById(1), 5000, FoodCategory.Rice));
 
         System.out.println(basedatabasefood.getFoodByCategory(FoodCategory.Beverages));
     }

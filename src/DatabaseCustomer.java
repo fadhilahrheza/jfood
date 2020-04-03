@@ -64,6 +64,14 @@ public class DatabaseCustomer
      */
     public static boolean addCustomer(Customer customer)
     {
+        for(int i=0; i < CUSTOMER_DATABASE.size(); i++)
+        {
+            if (customer.getEmail().equals(CUSTOMER_DATABASE.get(i).getEmail()))
+            {
+                return false;
+            }
+        }
+
         CUSTOMER_DATABASE.add(customer);
         lastid = customer.getId();
 

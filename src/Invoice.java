@@ -22,7 +22,7 @@ public abstract class Invoice
     private Calendar date;
     protected int totalPrice;
     private Customer customer;
-    private InvoiceStatus status = InvoiceStatus.Ongoing;
+    private InvoiceStatus status;
     
     /**
      * Constructor for objects of class Invoice
@@ -39,7 +39,7 @@ public abstract class Invoice
         this.foods = foods;
         this.date = Calendar.getInstance();
         this.customer = customer;
-        this.status = status;
+        this.status = InvoiceStatus.Ongoing;
     }
 
     /**
