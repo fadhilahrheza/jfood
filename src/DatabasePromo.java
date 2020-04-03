@@ -45,7 +45,7 @@ public class DatabasePromo
      *
      * @return boolean to true, if food was added
      */
-    public static Promo getCustomerById(int id)
+    public static Promo getPromoById(int id)
     {
         for(int i=0; i < PROMO_DATABASE.size(); i++)
         {

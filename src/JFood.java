@@ -63,33 +63,81 @@ import java.text.SimpleDateFormat;
 
         Location baselocation = new Location("Jakarta Selatan", "Sepi", "DKI Jakarta");
 
-        basedatapromo.addPromo(new Promo(DatabasePromo.getLastid()+1, "YEET", 10000, 15000, false));
-        basedatapromo.addPromo(new Promo(DatabasePromo.getLastid()+1, "YEET", 15000, 25000, true));
+        basedatabaseseller.addSeller(new Seller(DatabaseSeller.getLastid()+1, "Bayu", "eja@gmail.com", "085817661578", baselocation));
 
-        System.out.println(basedatapromo.getPromoDatabase());
-
-        ArrayList<Food> one = new ArrayList<Food>();
-        one.add(DatabaseFood.getFoodById(1));
-        one.add(DatabaseFood.getFoodById(2));
-
-        ArrayList<Food> dua = new ArrayList<Food>();
-        one.add(DatabaseFood.getFoodById(3));
-        one.add(DatabaseFood.getFoodById(2));
-
-        DatabaseInvoice.addInvoice(new CashInvoice(1, one, DatabaseCustomer.getCustomerById(1)));
-
-        basedatabaseseller.addSeller(new Seller(1, "EJA", "eja@gmail.com", "085817661578", baselocation));
-
+        Calendar calendar = new GregorianCalendar(2020, 4, 2);
         basedatabasecustomer.addCustomer(new Customer(DatabaseCustomer.getLastid()+1, "EJA", "eja@gmail.com", "1234", new GregorianCalendar(2020, 3, 1)));
         basedatabasecustomer.addCustomer(new Customer(DatabaseCustomer.getLastid()+1, "EJA", "eja@gmail.com", "Abcd1234", 2020, 3, 2));
         basedatabasecustomer.addCustomer(new Customer(DatabaseCustomer.getLastid()+1, "Rama", "rama@gmail.com", ""));
 
-        System.out.println(basedatabasecustomer.getCustomerDatabase());
+        //System.out.println(basedatabasecustomer.getCustomerDatabase());
+
+
 
         basedatabasefood.addFood(new Food(DatabaseFood.getLastId()+1, "Paket Sehat Bahari 1", basedatabaseseller.getSellerById(1), 15000, FoodCategory.Beverages));
         basedatabasefood.addFood(new Food(DatabaseFood.getLastId()+1, "Paket Sehat Bahari 2", basedatabaseseller.getSellerById(1), 3000, FoodCategory.Beverages));
         basedatabasefood.addFood(new Food(DatabaseFood.getLastId()+1, "Paket Sehat Bahari 3", basedatabaseseller.getSellerById(1), 5000, FoodCategory.Rice));
 
-        System.out.println(basedatabasefood.getFoodByCategory(FoodCategory.Beverages));
+        //System.out.println(basedatabasefood.getFoodByCategory(FoodCategory.Beverages));
+
+        basedatapromo.addPromo(new Promo(DatabasePromo.getLastid()+1, "Yeet", 50000, 100000, true));
+        basedatapromo.addPromo(new Promo(DatabasePromo.getLastid()+1, "Yeet", 25000, 100000, false));
+
+        System.out.println("\nPromo: ");
+        for (Promo promo : DatabasePromo.getPromoDatabase())
+        {
+            System.out.println(promo.getCode());
+        }
+
+        ArrayList<Food> makanan1 = new ArrayList<Food>();
+        makanan1.add(DatabaseFood.getFoodById(3));
+
+        ArrayList<Food> makanan2 = new ArrayList<Food>();
+        makanan2.add(DatabaseFood.getFoodById(1));
+        makanan2.add(DatabaseFood.getFoodById(2));
+
+        DatabaseInvoice.addInvoice(new CashInvoice(DatabaseInvoice.getLastId() + 1, makanan2, DatabaseCustomer.getCustomerById(1), 2000));
+        for (Invoice invoice : DatabaseInvoice.getInvoiceByCustomer(1))
+        {
+            invoice.setTotalPrice();
+        }
+
+        DatabaseInvoice.addInvoice(new CashlessInvoice(DatabaseInvoice.getLastId() + 1, makanan1, DatabaseCustomer.getCustomerById(1), DatabasePromo.getPromoById(DatabasePromo.getLastid())));
+        for (Invoice invoice : DatabaseInvoice.getInvoiceByCustomer(1))
+        {
+            if (invoice.totalPrice == 0)
+            {
+                invoice.setTotalPrice();
+            }
+        }
+
+        System.out.println("\nInvoice List: ");
+        for (Invoice invoice : DatabaseInvoice.getInvoiceDatabase())
+        {
+            System.out.println(invoice.toString() + "\n");
+        }
+
+        for (Invoice invoice : DatabaseInvoice.getInvoiceByCustomer(1))
+        {
+            invoice.setInvoiceStatus(InvoiceStatus.Finished);
+        }
+
+        DatabaseInvoice.addInvoice(new CashlessInvoice(DatabaseInvoice.getLastId() + 1, makanan1, DatabaseCustomer.getCustomerById(2), DatabasePromo.getPromoById(DatabasePromo.getLastid())));
+        DatabasePromo.activePromo(DatabasePromo.getLastid());
+
+        for (Invoice invoice : DatabaseInvoice.getInvoiceDatabase())
+        {
+            if (invoice.totalPrice == 0)
+            {
+                invoice.setTotalPrice();
+            }
+        }
+
+        System.out.println("\nInvoice List: ");
+        for (Invoice invoice : DatabaseInvoice.getInvoiceDatabase())
+        {
+            System.out.println(invoice.toString() + "\n");
+        }
+
     }
 }
