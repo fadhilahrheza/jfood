@@ -83,15 +83,15 @@ public class DatabaseCustomer
      *
      * @return boolean to true, if food was removed
      */
-    public static boolean removeSeller(int id)
+    public static boolean removeCustomer(int id)
     {
-        boolean sellerRemoved = false;
+        boolean customerRemoved = false;
         for(int i = 0; i < CUSTOMER_DATABASE.size(); i++)
         {
             if(id == CUSTOMER_DATABASE.get(i).getId())
             {
                 CUSTOMER_DATABASE.remove(i);
-                sellerRemoved = true;
+                customerRemoved = true;
             }
         }
         return true;

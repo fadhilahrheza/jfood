@@ -4,6 +4,9 @@ import java.lang.Object;
 import java.text.Format;
 import java.text.DateFormat;
 import java.text.SimpleDateFormat;
+
+import static java.lang.System.*;
+
 /**
  * Write a description of class CashInvoice here.
  *
@@ -96,6 +99,7 @@ public class CashInvoice extends Invoice
        {
            foodName = foodName + getFoods().get(i).getName();
        }
+       System.out.println(foodName);
        if (getDate() != null)
        {
            date = sdf.format(getDate().getTime());

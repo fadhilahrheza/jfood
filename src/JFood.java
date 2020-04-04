@@ -32,7 +32,7 @@ import java.text.SimpleDateFormat;
         
         //Promo promObj = new Promo(1, "LinkAja101", 10000, 20000, true);
         
-        //CashInvoice cashObj1 = new CashInvoice(4, foodObj4, cusObj1, InvoiceStatus.Finished);
+        //  CashInvoice cashObj1 = new CashInvoice(4, foodObj4, cusObj1, InvoiceStatus.Finished);
         
         //CashInvoice cashObj2 = new CashInvoice(5, foodObj5, "3/3/2020", cusObj, InvoiceStatus.Finished, 10000);
         
@@ -56,54 +56,81 @@ import java.text.SimpleDateFormat;
         //cashObj1.printData();
         //cashObj2.printData();
 
-        DatabaseSeller basedatabaseseller = new DatabaseSeller();
-        DatabaseFood basedatabasefood = new DatabaseFood();
-        DatabaseCustomer basedatabasecustomer = new DatabaseCustomer();
-        DatabasePromo basedatapromo = new DatabasePromo();
+        //DatabaseSeller basedatabaseseller = new DatabaseSeller();
+        //DatabaseFood basedatabasefood = new DatabaseFood();
+        //DatabaseCustomer basedatabasecustomer = new DatabaseCustomer();
+        //DatabasePromo basedatapromo = new DatabasePromo();
+
+        DatabaseSeller basedataSeller = new DatabaseSeller();
+        DatabaseFood basedataFood = new DatabaseFood();
+        DatabaseCustomer basedataCustomer = new DatabaseCustomer();
+        DatabasePromo basedataPromo = new DatabasePromo();
+        DatabaseInvoice basedataInvoice = new DatabaseInvoice();
 
         Location baselocation = new Location("Jakarta Selatan", "Sepi", "DKI Jakarta");
 
-        basedatabaseseller.addSeller(new Seller(DatabaseSeller.getLastid()+1, "Bayu", "eja@gmail.com", "085817661578", baselocation));
+        basedataSeller.addSeller(new Seller(DatabaseSeller.getLastid()+1, "EJA", "eja@gmail.com", "085817661578", baselocation));
 
-        Calendar calendar = new GregorianCalendar(2020, 4, 2);
-        basedatabasecustomer.addCustomer(new Customer(DatabaseCustomer.getLastid()+1, "EJA", "eja@gmail.com", "1234", new GregorianCalendar(2020, 3, 1)));
-        basedatabasecustomer.addCustomer(new Customer(DatabaseCustomer.getLastid()+1, "EJA", "eja@gmail.com", "Abcd1234", 2020, 3, 2));
-        basedatabasecustomer.addCustomer(new Customer(DatabaseCustomer.getLastid()+1, "Rama", "rama@gmail.com", ""));
+        basedataCustomer.addCustomer(new Customer(DatabaseCustomer.getLastid()+1, "EJA", "eja@gmail.com", "1234", new GregorianCalendar(2020, 3, 1)));
+        basedataCustomer.addCustomer(new Customer(DatabaseCustomer.getLastid()+1, "EJA", "eja@gmail.com", "Abcd1234", 2020, 3, 2));
+        basedataCustomer.addCustomer(new Customer(DatabaseCustomer.getLastid()+1, "Rama", "rama@gmail.com", ""));
 
-        //System.out.println(basedatabasecustomer.getCustomerDatabase());
+        //System.out.println(basedataCustomer.getCustomerDatabase());
 
+        basedataFood.addFood(new Food(DatabaseFood.getLastId()+1, "Kebab", DatabaseSeller.getSellerById(1), 15000, FoodCategory.Western));
+        basedataFood.addFood(new Food(DatabaseFood.getLastId()+1, "Burger", DatabaseSeller.getSellerById(1), 3000, FoodCategory.Western));
+        basedataFood.addFood(new Food(DatabaseFood.getLastId()+1, "Rice", DatabaseSeller.getSellerById(1), 5000, FoodCategory.Rice));
 
+        //System.out.println(basedataFood.getFoodByCategory(FoodCategory.Beverages));
 
-        basedatabasefood.addFood(new Food(DatabaseFood.getLastId()+1, "Paket Sehat Bahari 1", basedatabaseseller.getSellerById(1), 15000, FoodCategory.Beverages));
-        basedatabasefood.addFood(new Food(DatabaseFood.getLastId()+1, "Paket Sehat Bahari 2", basedatabaseseller.getSellerById(1), 3000, FoodCategory.Beverages));
-        basedatabasefood.addFood(new Food(DatabaseFood.getLastId()+1, "Paket Sehat Bahari 3", basedatabaseseller.getSellerById(1), 5000, FoodCategory.Rice));
+        basedataPromo.addPromo(new Promo(DatabasePromo.getLastid()+1, "Yeet", 50000, 100000, true));
+        basedataPromo.addPromo(new Promo(DatabasePromo.getLastid()+1, "Yeet", 25000, 100000, false));
 
-        //System.out.println(basedatabasefood.getFoodByCategory(FoodCategory.Beverages));
+        System.out.println(basedataPromo.getPromoDatabase());
 
-        basedatapromo.addPromo(new Promo(DatabasePromo.getLastid()+1, "Yeet", 50000, 100000, true));
-        basedatapromo.addPromo(new Promo(DatabasePromo.getLastid()+1, "Yeet", 25000, 100000, false));
+        ArrayList<Food> pertama = new ArrayList<Food>();
+        pertama.add(basedataFood.getFoodById(1));
+        ArrayList<Food> kedua = new ArrayList<Food>();
+        kedua.add(basedataFood.getFoodById(2));
 
-        System.out.println("\nPromo: ");
-        for (Promo promo : DatabasePromo.getPromoDatabase())
+        basedataInvoice.addInvoice(new CashInvoice (basedataInvoice.getLastId() + 1, pertama, basedataCustomer.getCustomerById(1), 1));
+
+        for(Invoice invoice : basedataInvoice.getInvoiceByCustomer(1))
         {
-            System.out.println(promo.getCode());
+            if(invoice.totalPrice == 0)
+            {
+                invoice.setTotalPrice();
+            }
         }
 
-        ArrayList<Food> makanan1 = new ArrayList<Food>();
-        makanan1.add(DatabaseFood.getFoodById(3));
+        basedataInvoice.addInvoice(new CashlessInvoice (basedataInvoice.getLastId() + 1, kedua, basedataCustomer.getCustomerById(1)));
 
-        ArrayList<Food> makanan2 = new ArrayList<Food>();
-        makanan2.add(DatabaseFood.getFoodById(1));
-        makanan2.add(DatabaseFood.getFoodById(2));
-
-        DatabaseInvoice.addInvoice(new CashInvoice(DatabaseInvoice.getLastId() + 1, makanan2, DatabaseCustomer.getCustomerById(1), 2000));
-        for (Invoice invoice : DatabaseInvoice.getInvoiceByCustomer(1))
+        for(Invoice invoice : basedataInvoice.getInvoiceByCustomer(1))
         {
-            invoice.setTotalPrice();
+            if(invoice.totalPrice == 0)
+            {
+                invoice.setTotalPrice();
+            }
         }
 
-        DatabaseInvoice.addInvoice(new CashlessInvoice(DatabaseInvoice.getLastId() + 1, makanan1, DatabaseCustomer.getCustomerById(1), DatabasePromo.getPromoById(DatabasePromo.getLastid())));
-        for (Invoice invoice : DatabaseInvoice.getInvoiceByCustomer(1))
+        System.out.println("\nDaftar Invoice: ");
+        for (Invoice invoice : DatabaseInvoice.getInvoiceDatabase())
+        {
+            System.out.println(invoice.toString() + "\n");
+        }
+
+        System.out.println(basedataInvoice.getInvoiceDatabase());
+
+
+        for(Invoice invoice : basedataInvoice.getInvoiceByCustomer(1))
+        {
+            basedataInvoice.changeInvoice(1, InvoiceStatus.Finished);
+        }
+
+        basedataInvoice.addInvoice(new CashlessInvoice (basedataInvoice.getLastId() + 1, pertama, basedataCustomer.getCustomerById(2), basedataPromo.getPromoById(1)));
+        basedataPromo.activePromo(1);
+
+        for (Invoice invoice : basedataInvoice.getInvoiceDatabase())
         {
             if (invoice.totalPrice == 0)
             {
@@ -111,33 +138,9 @@ import java.text.SimpleDateFormat;
             }
         }
 
-        System.out.println("\nInvoice List: ");
-        for (Invoice invoice : DatabaseInvoice.getInvoiceDatabase())
+        for (Invoice invoice : basedataInvoice.getInvoiceDatabase())
         {
-            System.out.println(invoice.toString() + "\n");
+            System.out.println(invoice);
         }
-
-        for (Invoice invoice : DatabaseInvoice.getInvoiceByCustomer(1))
-        {
-            invoice.setInvoiceStatus(InvoiceStatus.Finished);
-        }
-
-        DatabaseInvoice.addInvoice(new CashlessInvoice(DatabaseInvoice.getLastId() + 1, makanan1, DatabaseCustomer.getCustomerById(2), DatabasePromo.getPromoById(DatabasePromo.getLastid())));
-        DatabasePromo.activePromo(DatabasePromo.getLastid());
-
-        for (Invoice invoice : DatabaseInvoice.getInvoiceDatabase())
-        {
-            if (invoice.totalPrice == 0)
-            {
-                invoice.setTotalPrice();
-            }
-        }
-
-        System.out.println("\nInvoice List: ");
-        for (Invoice invoice : DatabaseInvoice.getInvoiceDatabase())
-        {
-            System.out.println(invoice.toString() + "\n");
-        }
-
     }
 }

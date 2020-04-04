@@ -11,7 +11,7 @@ import java.util.ArrayList;
 public class DatabasePromo
 {
     // instance variables - replace the example below with your own
-    private static ArrayList<Promo> PROMO_DATABASE;
+    private static ArrayList<Promo> PROMO_DATABASE = new ArrayList<Promo>();
     private static int lastid = 0;
 
     /**
@@ -78,7 +78,7 @@ public class DatabasePromo
     {
         for(int i=0; i < PROMO_DATABASE.size(); i++)
         {
-            if (promo.getCode() ==PROMO_DATABASE.get(i).getCode())
+            if (promo.getCode().equals(PROMO_DATABASE.get(i).getCode()))
             {
                 return false;
             }
