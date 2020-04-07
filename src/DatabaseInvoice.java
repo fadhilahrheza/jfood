@@ -1,18 +1,30 @@
 import java.lang.reflect.Array;
 import java.util.ArrayList;
 
+/**
+ * Class DatabaseInvoice. Contain the database of Invoice
+ *
+ * @author Fadhilah Rheza P
+ * @version 1.0
+ */
 public class DatabaseInvoice
 {
     /**
-     * Below are the variable for class Customer
+     * Below are the variable for class DatabaseInvoice
      */
     private static ArrayList<Invoice> INVOICE_DATABASE = new ArrayList<Invoice>();
     private static int lastid = 0;
 
     /**
-     * Adding Seller
+     * Constructor for objects of class DatabaseInvoice
      *
-     * @return boolean to true, if food was added
+     * @param listInvoice (the list of invoice in the database)
+     */
+
+    /**
+     * Get the Array list of InvoiceDatabase
+     *
+     * @return INVOICE_DATABASE
      */
     public static ArrayList<Invoice> getInvoiceDatabase()
     {
@@ -20,9 +32,9 @@ public class DatabaseInvoice
     }
 
     /**
-     * Adding Seller
+     * Get the last ID of InvoiceDatabase
      *
-     * @return boolean to true, if food was added
+     * @return lastid
      */
     public static int getLastId()
     {
@@ -30,82 +42,94 @@ public class DatabaseInvoice
     }
 
     /**
-     * Adding food
+     * Getting Invoice Id
      *
-     * @return boolean to true, if food was added
+     * @return invoice
      */
     public static Invoice getInvoiceById(int id)
     {
-        for(int i=0; i < INVOICE_DATABASE.size(); i++)
+        for(Invoice invoice : INVOICE_DATABASE)
         {
-            if(id == INVOICE_DATABASE.get(i).getId())
+            if(id == invoice.getId())
             {
-                return INVOICE_DATABASE.get(i);
+                return invoice;
             }
         }
         return null;
     }
 
+    /**
+     * Get the Array list of Invoice by Customer
+     *
+     * @return foodlist
+     */
     public static ArrayList<Invoice> getInvoiceByCustomer(int customerId)
     {
-        ArrayList<Invoice> invoicelist = new ArrayList<Invoice>();
-        boolean list;
+        ArrayList<Invoice> invoiceList = new ArrayList<Invoice>();
+        Customer customer = DatabaseCustomer.getCustomerById(customerId);
 
-        for(int i=0; i < INVOICE_DATABASE.size(); i++)
+        for(Invoice invoice : INVOICE_DATABASE)
         {
-            if(customerId == INVOICE_DATABASE.get(i).getCustomer().getId())
+            if(customer.equals(invoice.getCustomer()))
             {
-                invoicelist.add(INVOICE_DATABASE.get(i));
-                list = true;
+                invoiceList.add(invoice);
             }
         }
-        if(list = true)
-        {
-            return invoicelist;
-        }
-        return null;
+        return invoiceList;
     }
 
+    /**
+     * Adding Invoice
+     *
+     * @return true
+     */
     public static boolean addInvoice(Invoice invoice)
     {
-        for(int i=0; i < INVOICE_DATABASE.size(); i++)
+        int customerId = invoice.getCustomer().getId();
+        for (Invoice invoiceLagi : INVOICE_DATABASE)
         {
-            if (invoice.getCustomer().getId() == INVOICE_DATABASE.get(i).getCustomer().getId() && INVOICE_DATABASE.get(i).getInvoiceStatus().equals(InvoiceStatus.Ongoing))
+            if (invoiceLagi.getCustomer().getId() == customerId && invoiceLagi.getInvoiceStatus() == InvoiceStatus.Ongoing)
             {
                 return false;
             }
         }
-
         INVOICE_DATABASE.add(invoice);
         lastid = invoice.getId();
 
         return true;
     }
 
-    public static boolean changeInvoice(int id, InvoiceStatus invoiceStatus)
+    /**
+     * Changing Invoice
+     *
+     * @return true
+     */
+    public static boolean changeInvoiceStatus(int id, InvoiceStatus status)
     {
         for(Invoice invoice : INVOICE_DATABASE)
         {
-            if(invoiceStatus.equals(InvoiceStatus.Ongoing))
+            if(status.equals(InvoiceStatus.Ongoing))
             {
                 return true;
             }
         }
         return false;
     }
-
+    /**
+     * Removing Invoice
+     *
+     * @return true
+     */
     public static boolean removeInvoice(int id)
     {
-        boolean invoiceRemoved = false;
-        for(int i = 0; i < INVOICE_DATABASE.size(); i++)
+        for(Invoice invoice : INVOICE_DATABASE)
         {
-            if(id == INVOICE_DATABASE.get(i).getId())
+            if(id == invoice.getId())
             {
-                INVOICE_DATABASE.remove(i);
-                invoiceRemoved = true;
+                INVOICE_DATABASE.remove(invoice);
+                return true;
             }
         }
-        return true;
+        return false;
     }
-
 }

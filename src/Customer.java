@@ -4,13 +4,14 @@ import java.lang.Object;
 import java.text.Format;
 import java.text.DateFormat;
 import java.text.SimpleDateFormat;
+import java.util.GregorianCalendar;
+
 /**
  * Here is the class Customer.
  * Inside this class, contains data of the customer.
  * 
  * @author Fadhilah Rheza P
  * @version 1.0
- * @since 2020-02-27
  */
 public class Customer
 {
@@ -33,6 +34,7 @@ public class Customer
         setEmail(email);
         setPassword(password);
         this.joinDate = joinDate;
+        this.joinDate.add(Calendar.MONTH,-1);
     }
     
     /**
@@ -45,6 +47,7 @@ public class Customer
         setEmail(email);
         setPassword(password);
         this.joinDate = new GregorianCalendar(year, month-1, dayOfMonth);
+
     }
     
     /**
@@ -186,7 +189,7 @@ public class Customer
      */
     public void setJoinDate(int year, int month, int dayOfMonth)
     {
-        this.joinDate = new GregorianCalendar(year, month-1, dayOfMonth);
+        this.joinDate = new GregorianCalendar(year, month, dayOfMonth);
     }
     
     /**
@@ -203,15 +206,11 @@ public class Customer
     {
         String date = "";
         SimpleDateFormat sdf = new SimpleDateFormat("dd MMMM yyyy");
-        if(getJoinDate() != null)
-        {
-            date = sdf.format(joinDate.getTime());
-        }
         return
-        "\nID:"+getId()+
-        "\nName:"+getName()+
-        "\nEmail:"+getEmail()+
-        "\nPassword:"+getPassword()+
-        "\nJoin Date:"+date;
+        "\nID:" + getId()+
+        "\nName:" + getName()+
+        "\nEmail:" + getEmail()+
+        "\nPassword:" + getPassword()+
+        "\nJoin Date:" + sdf.format(joinDate.getTime());
     }
 }

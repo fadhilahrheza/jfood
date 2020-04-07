@@ -4,14 +4,13 @@ import java.lang.Object;
 import java.text.Format;
 import java.text.DateFormat;
 import java.text.SimpleDateFormat;
-
 import static java.lang.System.*;
 
 /**
- * Write a description of class CashInvoice here.
+ * CashInvoice Class.
  *
- * @author (your name)
- * @version (a version number or a date)
+ * @author Fadhilah Rheza P
+ * @version 1.0
  */
 public class CashInvoice extends Invoice
 {
@@ -62,7 +61,7 @@ public class CashInvoice extends Invoice
     /**
      * Sets the deliveryFee of the CashInvoice
      * 
-     * @param int
+     * @param deliveryFee
      */
     public void setDeliveryFee(int deliveryFee)
     {
@@ -76,42 +75,31 @@ public class CashInvoice extends Invoice
      */
     public void setTotalPrice()
     {
-        for (int i = 0; 1 < getFoods().size(); i++)
+        super.totalPrice = 0;
+        for (Food foodList : getFoods())
         {
-            super.totalPrice = super.totalPrice+getFoods().get(i).getPrice();
+            super.totalPrice = super.totalPrice + foodList.getPrice();
         }
-        if (deliveryFee > 0)
-        {
-            totalPrice = totalPrice+getDeliveryFee();
-        }
-        else
-        {
-            totalPrice = totalPrice;
-        }
+        super.totalPrice = super.totalPrice + deliveryFee;
     }
     
    public String toString()
    {
-       String date = "";
        String foodName = "";
        SimpleDateFormat sdf = new SimpleDateFormat("dd MMMM yyyy");
-       for(int i = 0; 1 < getFoods().size(); i++)
+       for(Food foodList : getFoods())
        {
-           foodName = foodName + getFoods().get(i).getName();
+           foodName = foodName + foodList.getName();
        }
-       System.out.println(foodName);
-       if (getDate() != null)
-       {
-           date = sdf.format(getDate().getTime());
-       }
-            return "================Invoice================" + "\n" +
-                    "ID: " + getId() + "\n" +
-                    "Name: " + foodName + "\n" +
-                    "Date: " + date + "\n" +
-                    "Customer: " + getCustomer().getName() + "\n" +
-                    "Total Price: " + totalPrice + "\n" +
-                    "Status: " + getInvoiceStatus() + "\n" +
-                    "Payment Type: " + getPaymentType() + "\n" +
-                    "Delivery Fee: " + getDeliveryFee() + "\n";
+       foodName = foodName.substring(0, foodName.length() - 0);
+       return "================Invoice================" + "\n" +
+               "ID: " + super.getId() + "\n" +
+               "Foods: " + foodName + "\n" +
+               "Date: " + sdf.format(super.getDate().getTime()) + "\n" +
+               "Customer: " + super.getCustomer().getName() + "\n" +
+               "Total Price: " + totalPrice + "\n" +
+               "Status: " + super.getInvoiceStatus() + "\n" +
+               "Payment Type: " + getPaymentType() + "\n" +
+               "Delivery Fee: " + getDeliveryFee() + "\n";
     }
 }

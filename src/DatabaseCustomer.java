@@ -1,14 +1,16 @@
 import java.util.ArrayList;
 
 /**
- * Write a description of class DatabaseCustomer here.
+ * Class DatabaseCustomer. Contain the database of the customer
  *
- * @author (your name)
- * @version (a version number or a date)
+ * @author Fadhilah Rheza P
+ * @version 1.0
  */
 public class DatabaseCustomer
 {
-    // instance variables - replace the example below with your own
+    /**
+     * Below are the variable for class DatabaseCustomer
+     */
     private static ArrayList<Customer> CUSTOMER_DATABASE = new ArrayList<Customer>();
     private static int lastid = 0;
 
@@ -17,13 +19,11 @@ public class DatabaseCustomer
      * 
      * @param listFood (the list of food in the database)
      */
-    
 
     /**
-     /**
-     * Adding Seller
+     * Get the Array list of CustomerDatabase
      *
-     * @return boolean to true, if food was added
+     * @return CUSTOMER_DATABASE
      */
     public static ArrayList<Customer> getCustomerDatabase()
     {
@@ -31,9 +31,9 @@ public class DatabaseCustomer
     }
 
     /**
-     * Adding Seller
+     * Get the last ID of CustomerDatabase
      *
-     * @return boolean to true, if food was added
+     * @return lastid
      */
     public static int getLastid()
     {
@@ -41,32 +41,32 @@ public class DatabaseCustomer
     }
 
     /**
-     * Adding Seller
+     * Getting Customer Id
      *
-     * @return boolean to true, if food was added
+     * @return true
      */
     public static Customer getCustomerById(int id)
     {
-        for(int i=0; i < CUSTOMER_DATABASE.size(); i++)
+        for(Customer customer : CUSTOMER_DATABASE)
         {
-            if(id == CUSTOMER_DATABASE.get(i).getId())
+            if(id == customer.getId())
             {
-                return CUSTOMER_DATABASE.get(i);
+                return customer;
             }
         }
         return null;
     }
 
     /**
-     * Adding Seller
+     * Adding customer to database
      *
-     * @return boolean to true, if food was added
+     * @return true
      */
     public static boolean addCustomer(Customer customer)
     {
-        for(int i=0; i < CUSTOMER_DATABASE.size(); i++)
+        for(Customer customerLagi : CUSTOMER_DATABASE)
         {
-            if (customer.getEmail().equals(CUSTOMER_DATABASE.get(i).getEmail()))
+            if (customerLagi.getEmail().equals(customerLagi.getEmail()))
             {
                 return false;
             }
@@ -79,21 +79,20 @@ public class DatabaseCustomer
     }
 
     /**
-     * Removing Seller
+     * Removing customer to database
      *
-     * @return boolean to true, if food was removed
+     * @return true
      */
     public static boolean removeCustomer(int id)
     {
-        boolean customerRemoved = false;
-        for(int i = 0; i < CUSTOMER_DATABASE.size(); i++)
+        for(Customer customer : CUSTOMER_DATABASE)
         {
-            if(id == CUSTOMER_DATABASE.get(i).getId())
+            if(id == customer.getId())
             {
-                CUSTOMER_DATABASE.remove(i);
-                customerRemoved = true;
+                CUSTOMER_DATABASE.remove(customer);
+                return true;
             }
         }
-        return true;
+        return false;
     }
 }

@@ -1,16 +1,16 @@
 import java.util.ArrayList;
 
 /**
- * Here is the class DatabasePromo.
- * Inside this class, promo database.
+ * Here is the class DatabasePromo. Contain the database of promo
  * 
  * @author Fadhilah Rheza P
  * @version 1.0
- * @since 2020-03-12
  */
 public class DatabasePromo
 {
-    // instance variables - replace the example below with your own
+    /**
+     * Below are the variable for class DatabasePromo
+     */
     private static ArrayList<Promo> PROMO_DATABASE = new ArrayList<Promo>();
     private static int lastid = 0;
 
@@ -18,12 +18,10 @@ public class DatabasePromo
      * Constructor for objects of class DatabasePromo
      */
 
-
     /**
-     /**
-     * Adding Seller
+     * Get the Array list of PromoDatabase
      *
-     * @return boolean to true, if food was added
+     * @return PROMO_DATABASE
      */
     public static ArrayList<Promo> getPromoDatabase()
     {
@@ -31,9 +29,9 @@ public class DatabasePromo
     }
 
     /**
-     * Adding Seller
+     * Get the last ID of PromoDatabase
      *
-     * @return boolean to true, if food was added
+     * @return lastid
      */
     public static int getLastid()
     {
@@ -41,44 +39,49 @@ public class DatabasePromo
     }
 
     /**
-     * Adding Seller
+     * Getting Promo by Id
      *
-     * @return boolean to true, if food was added
+     * @return promo
      */
     public static Promo getPromoById(int id)
     {
-        for(int i=0; i < PROMO_DATABASE.size(); i++)
+        for(Promo promo : PROMO_DATABASE)
         {
-            if(id == PROMO_DATABASE.get(i).getId())
+            if(id == promo.getId())
             {
-                return PROMO_DATABASE.get(i);
+                return promo;
             }
         }
         return null;
     }
 
     /**
-     * Adding Seller
+     * Getting Promo by Code
      *
-     * @return boolean to true, if food was added
+     * @return promo
      */
     public static Promo getPromoByCode(String code)
     {
-        for(int i=0; i < PROMO_DATABASE.size(); i++)
+        for(Promo promo : PROMO_DATABASE)
         {
-            if(code == PROMO_DATABASE.get(i).getCode())
+            if(code == promo.getCode())
             {
-                return PROMO_DATABASE.get(i);
+                return promo;
             }
         }
         return null;
     }
 
+    /**
+     * Adding Promo
+     *
+     * @return true
+     */
     public static boolean addPromo(Promo promo)
     {
-        for(int i=0; i < PROMO_DATABASE.size(); i++)
+        for(Promo promoLagi : PROMO_DATABASE)
         {
-            if (promo.getCode().equals(PROMO_DATABASE.get(i).getCode()))
+            if (promoLagi.getCode().equals(promo.getCode()))
             {
                 return false;
             }
@@ -89,48 +92,57 @@ public class DatabasePromo
         return true;
     }
 
+    /**
+     * Active Promo
+     *
+     * @return true
+     */
     public static boolean activePromo(int id)
     {
-        boolean status = false;
-
-        for(int i=0; i < PROMO_DATABASE.size(); i++)
+        for(Promo promo : PROMO_DATABASE)
         {
-            if(id == PROMO_DATABASE.get(i).getId())
+            if(id == promo.getId())
             {
-                PROMO_DATABASE.get(i).setActive(true);
-                status = true;
+                promo.setActive(true);
+                return true;
             }
         }
         return false;
     }
 
+    /**
+     * Deactive Promo
+     *
+     * @return true
+     */
     public static boolean deactivePromo(int id)
     {
-        boolean status = false;
-
-        for(int i=0; i < PROMO_DATABASE.size(); i++)
+        for(Promo promo : PROMO_DATABASE)
         {
-            if(id == PROMO_DATABASE.get(i).getId())
+            if(id == promo.getId())
             {
-                PROMO_DATABASE.get(i).setActive(false);
-                status = true;
+                promo.setActive(false);
+                return true;
             }
         }
         return false;
     }
 
+    /**
+     * Removing Promo
+     *
+     * @return true
+     */
     public static boolean removePromo(int id)
     {
-        boolean promoRemoved = false;
-
-        for(int i=0; i < PROMO_DATABASE.size(); i++)
+        for(Promo promo : PROMO_DATABASE)
         {
-            if(id == PROMO_DATABASE.get(i).getId())
+            if(id == promo.getId())
             {
-                PROMO_DATABASE.remove(i);
-                promoRemoved = true;
+                PROMO_DATABASE.remove(promo);
+                return true;
             }
         }
-        return promoRemoved;
+        return false;
     }
 }

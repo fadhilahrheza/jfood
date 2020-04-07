@@ -3,13 +3,13 @@ import java.util.ArrayList;
 /**
  * Write a description of class DatabaseSeller here.
  *
- * @author (your name)
- * @version (a version number or a date)
+ * @author Fadhilah Rheza P
+ * @version 1.0
  */
 public class DatabaseSeller
 {
     /**
-     * Below are the variable for class Customer
+     * Below are the variable for class DatabaseSeller
      */
     private static ArrayList<Seller> SELLER_DATABASE = new ArrayList<Seller>();
     private static int lastid = 0;
@@ -19,9 +19,9 @@ public class DatabaseSeller
      */
 
     /**
-     * Adding Seller
+     * Get the Array list of SellerDatabase
      *
-     * @return boolean to true, if food was added
+     * @return SELLER_DATABASE
      */
     public static ArrayList<Seller> getSellerDatabase()
     {
@@ -39,17 +39,17 @@ public class DatabaseSeller
     }
 
     /**
-     * Adding Seller
+     * Getting Seller by Id
      *
-     * @return boolean to true, if food was added
+     * @return lastid
      */
     public static Seller getSellerById(int id)
     {
-        for(int i=0; i < SELLER_DATABASE.size(); i++)
+        for(Seller seller : SELLER_DATABASE)
         {
-            if(id == SELLER_DATABASE.get(i).getId())
+            if(id == seller.getId())
             {
-                return SELLER_DATABASE.get(i);
+                return seller;
             }
         }
         return null;
@@ -58,7 +58,7 @@ public class DatabaseSeller
    /**
      * Adding Seller
      *
-     * @return boolean to true, if food was added
+     * @return true
      */ 
     public static boolean addSeller(Seller seller)
     {
@@ -71,19 +71,18 @@ public class DatabaseSeller
     /**
      * Removing Seller
      *
-     * @return boolean to true, if food was removed
+     * @return true
      */
     public static boolean removeSeller(int id)
     {
-        boolean sellerRemoved = false;
-        for(int i = 0; i < SELLER_DATABASE.size(); i++)
+        for(Seller seller : SELLER_DATABASE)
         {
-            if(id == SELLER_DATABASE.get(i).getId())
+            if(id == seller.getId())
             {
-                SELLER_DATABASE.remove(i);
-                sellerRemoved = true;
+                SELLER_DATABASE.remove(seller);
+                return true;
             }
         }
-        return true;
+        return false;
     }
 }

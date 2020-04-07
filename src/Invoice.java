@@ -22,7 +22,7 @@ public abstract class Invoice
     private Calendar date;
     protected int totalPrice;
     private Customer customer;
-    private InvoiceStatus status;
+    private InvoiceStatus invoiceStatus;
     
     /**
      * Constructor for objects of class Invoice
@@ -39,7 +39,7 @@ public abstract class Invoice
         this.foods = foods;
         this.date = Calendar.getInstance();
         this.customer = customer;
-        this.status = InvoiceStatus.Ongoing;
+        this.invoiceStatus = InvoiceStatus.Ongoing;
     }
 
     /**
@@ -106,7 +106,7 @@ public abstract class Invoice
      */
     public InvoiceStatus getInvoiceStatus()
     {
-        return status;
+        return invoiceStatus;
     }
     
     /**
@@ -159,7 +159,7 @@ public abstract class Invoice
     /**
      * Sets the id of the invoice
      * 
-     * @param id
+     * @param customer
      */
     public void setCustomer(Customer customer)
     {
@@ -169,17 +169,16 @@ public abstract class Invoice
     /**
      * Sets the InvoiceStatus of the invoice
      * 
-     * @param status
+     * @param invoiceStatus
      */
     public void setInvoiceStatus(InvoiceStatus status)
     {
-        this.status= status;
+        this.invoiceStatus=invoiceStatus;
     }
     
     /**
-     * To print out (printData)
-     * 
-     * @param idFood is used
+     * To print out
+     *
      */
     public abstract String toString();;
 }

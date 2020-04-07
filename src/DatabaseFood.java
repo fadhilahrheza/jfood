@@ -1,18 +1,18 @@
+import jdk.jfr.Category;
+
 import java.lang.reflect.Array;
 import java.util.ArrayList;
 
 /**
- * Here is the class DatabaseFood.
- * Inside this class, contains the list of food in the database.
+ * Class DatabaseFood. Contain the database of Food
  *
  * @author Fadhilah Rheza P
  * @version 1.0
- * @since 2020-02-27
  */
 public class DatabaseFood
 {
     /**
-     * Below are the variable for class Customer
+     * Below are the variable for class DatabaseFood
      */
     private static ArrayList<Food> FOOD_DATABASE = new ArrayList<Food>();
     private static int lastid = 0;
@@ -24,9 +24,9 @@ public class DatabaseFood
      */
 
     /**
-     * Adding Seller
+     * Get the Array list of FoodDatabase
      *
-     * @return boolean to true, if food was added
+     * @return FOOD_DATABASE
      */
     public static ArrayList<Food> getFoodDatabase()
     {
@@ -34,9 +34,9 @@ public class DatabaseFood
     }
 
     /**
-     * Adding Seller
+     * Get the last ID of FoodDatabase
      *
-     * @return boolean to true, if food was added
+     * @return lastid
      */
     public static int getLastId()
     {
@@ -44,72 +44,65 @@ public class DatabaseFood
     }
 
     /**
-     * Adding food
+     * Getting Food Id
      *
-     * @return boolean to true, if food was added
+     * @return food
      */
     public static Food getFoodById(int id)
     {
-        for(int i=0; i < FOOD_DATABASE.size(); i++)
+        for(Food food : FOOD_DATABASE)
         {
-            if(id == FOOD_DATABASE.get(i).getId())
+            if(id == food.getId())
             {
-                return FOOD_DATABASE.get(i);
+                return food;
             }
         }
         return null;
     }
 
     /**
-     * Adding food
+     * Get the Array list of Food by Seller
      *
-     * @return boolean to true, if food was added
+     * @return foodlist
      */
     public static ArrayList<Food> getFoodBySeller(int sellerId)
     {
         ArrayList<Food> foodlist = new ArrayList<Food>();
-        boolean list;
+        Seller seller = DatabaseSeller.getSellerById(sellerId);
 
-        for(int i=0; i < FOOD_DATABASE.size(); i++)
+        for(Food food : FOOD_DATABASE)
         {
-            if(sellerId == FOOD_DATABASE.get(i).getSeller().getId())
+            if(seller.equals(food.getSeller()))
             {
-                foodlist.add(FOOD_DATABASE.get(i));
-                list = true;
+                foodlist.add(food);
             }
         }
-        if(list = true)
-        {
-            return foodlist;
-        }
-        return null;
+        return foodlist;
     }
     
     /**
-     * Removing food
+     * Get the Array list of Food by Category
      *
      * @return boolean to true, if food was removed
      */
     public static ArrayList<Food> getFoodByCategory (FoodCategory foodCategory)
     {
         ArrayList<Food> foodlist = new ArrayList<Food>();
-        boolean list;
 
-        for(int i=0; i < FOOD_DATABASE.size(); i++)
+        for(Food food : FOOD_DATABASE)
         {
-            if (foodCategory == FOOD_DATABASE.get(i).getCategory())
+            if (foodCategory.equals(food.getCategory()))
             {
-            foodlist.add(FOOD_DATABASE.get(i));
-            list = true;
+            foodlist.add(food);
             }
         }
-        return null;
+        return foodlist;
     }
 
     /**
-     * Adding Seller
+     * Adding Food
      *
-     * @return boolean to true, if food was added
+     * @return true
      */
     public static boolean addFood(Food food)
     {
@@ -120,21 +113,20 @@ public class DatabaseFood
     }
 
     /**
-     * Removing Seller
+     * Removing Food
      *
-     * @return boolean to true, if food was removed
+     * @return true
      */
     public static boolean removeFood(int id)
     {
-        boolean foodRemoved = false;
-        for(int i = 0; i < FOOD_DATABASE.size(); i++)
+        for(Food food : FOOD_DATABASE)
         {
-            if(id == FOOD_DATABASE.get(i).getId())
+            if(id == food.getId())
             {
-                FOOD_DATABASE.remove(i);
-                foodRemoved = true;
+                FOOD_DATABASE.remove(food);
+                return true;
             }
         }
-        return true;
+        return false;
     }
 }
