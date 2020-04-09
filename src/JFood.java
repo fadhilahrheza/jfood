@@ -11,85 +11,221 @@ import java.text.SimpleDateFormat;
     public static void main(String[] args)
     {
         //CS
-        DatabaseSeller basedataSeller = new DatabaseSeller();
-        DatabaseFood basedataFood = new DatabaseFood();
-        DatabaseCustomer basedataCustomer = new DatabaseCustomer();
-
-        Location baselocation = new Location("Jakarta Selatan", "Sepi", "DKI Jakarta");
-
-        basedataSeller.addSeller(new Seller(DatabaseSeller.getLastid()+1, "EJA", "eja@gmail.com", "085817661578", baselocation));
-
-        basedataCustomer.addCustomer(new Customer(DatabaseCustomer.getLastid()+1, "EJA", "eja@gmail.com", "Abcd1234", new GregorianCalendar(2020, 3, 1)));
-        basedataCustomer.addCustomer(new Customer(DatabaseCustomer.getLastid()+1, "EJA", "eja@gmail.com", "Abcd1234", 2020, 3, 1));
-        basedataCustomer.addCustomer(new Customer(DatabaseCustomer.getLastid()+1, "Rama", "mkharisma@gmail.com", "4567"));
-
-        for (Customer customer : DatabaseCustomer.getCustomerDatabase())
+        Location baselocation = new Location("Jakarta", "Sepi", "Jakarta");
+        try
         {
-            System.out.println(customer);
-            System.out.println("");
+            DatabaseSeller.addSeller(new Seller(DatabaseSeller.getLastid()+1, "Eja", "Eja@gmail.com", "081413565xxx", baselocation));
+        }
+        catch (SellerNotFoundException e)
+        {
+            System.out.println(e.getMessage());
         }
 
-        basedataFood.addFood(new Food(DatabaseFood.getLastId()+1, "Fries", DatabaseSeller.getSellerById(1), 10000, FoodCategory.Western));
-        basedataFood.addFood(new Food(DatabaseFood.getLastId()+1, "Macha Tea", DatabaseSeller.getSellerById(1), 15000, FoodCategory.Japanese));
-        basedataFood.addFood(new Food(DatabaseFood.getLastId()+1, "Nasi", DatabaseSeller.getSellerById(1), 5000, FoodCategory.Rice));
-
-        for (Food food : DatabaseFood.getFoodByCategory(FoodCategory.Western))
+        try
         {
-            System.out.println(food);
-            System.out.println("");
+            DatabaseFood.addFood(new Food(DatabaseFood.getLastId() + 1, "Thai Tea", DatabaseSeller.getSellerById(1), 5000, FoodCategory.Beverages));
+            DatabaseFood.addFood(new Food(DatabaseFood.getLastId() + 1, "Latte", DatabaseSeller.getSellerById(1), 12000, FoodCategory.Beverages));
+            DatabaseFood.addFood(new Food(DatabaseFood.getLastId() + 1, "Nasi", DatabaseSeller.getSellerById(1), 20000, FoodCategory.Japanese));
         }
+        catch (FoodNotFoundException e)
+        {
+            System.out.println(e.getMessage());
+        }
+        ArrayList<Food> list1 = new ArrayList<Food>();
+        try
+        {
+            list1.add(DatabaseFood.getFoodById(1));
+        }
+        catch (FoodNotFoundException e)
+        {
+            System.out.println(e.getMessage());
+        }
+
+
+        ArrayList<Food> list2 = new ArrayList<Food>();
+        try
+        {
+            list2.add(DatabaseFood.getFoodById(2));
+            list2.add(DatabaseFood.getFoodById(3));
+        }
+        catch (FoodNotFoundException e)
+        {
+            System.out.println(e.getMessage());
+        }
+
+        try
+        {
+            DatabaseCustomer.addCustomer(new Customer(DatabaseCustomer.getLastid()+1, "Eja", "eja.fadhil@gmail.com", "Qwerty!123"));
+            DatabaseCustomer.addCustomer(new Customer(DatabaseCustomer.getLastid() +1, "Eja", "eja.fadhila@gmail.com", "qWerty!123"));
+            DatabaseCustomer.addCustomer(new Customer (DatabaseCustomer.getLastid() + 1, "Rama", "rama@gmail.com", "123WQERTY!"));
+            DatabaseCustomer.addCustomer(new Customer(DatabaseCustomer.getLastid()+1, "Kharisma", "mkharisma@gmail.com", "321WQERTY@"));
+
+        }
+        catch (EmailAlreadyExistsException e)
+        {
+            System.out.println(e.getMessage());
+        }
+
+
+        try
+        {
+            DatabaseFood.removeFood(30);
+        }
+        catch (FoodNotFoundException e)
+        {
+            System.out.println(e.getMessage());
+        }
+
+        try
+        {
+            DatabaseFood.getFoodById(30);
+        }
+        catch (FoodNotFoundException e)
+        {
+            System.out.println(e.getMessage());
+        }
+
+        try
+        {
+            DatabaseCustomer.getCustomerById(30);
+        }
+        catch (CustomerNotFoundException e)
+        {
+            System.out.println(e.getMessage());
+        }
+
+        try
+        {
+            DatabaseCustomer.removeCustomer(30);
+        }
+        catch (CustomerNotFoundException e)
+        {
+            System.out.println(e.getMessage());
+        }
+
+        try
+        {
+            DatabaseSeller.removeSeller(30);
+        }
+        catch (SellerNotFoundException e)
+        {
+            System.out.println(e.getMessage());
+        }
+
+        try
+        {
+            DatabaseSeller.getSellerById(30);
+        }
+        catch (SellerNotFoundException e)
+        {
+            System.out.println(e.getMessage());
+        }
+
+        try
+        {
+            DatabasePromo.removePromo(30);
+        }
+        catch (PromoNotFoundException e)
+        {
+            System.out.println(e.getMessage());
+        }
+
+        try
+        {
+            DatabasePromo.getPromoById(30);
+        }
+        catch (PromoNotFoundException e)
+        {
+            System.out.println(e.getMessage());
+        }
+
+        try
+        {
+            DatabasePromo.addPromo(new Promo (DatabasePromo.getLastid() + 1, "MODUL7", 1000, 10000, true));
+            DatabasePromo.addPromo(new Promo(DatabasePromo.getLastid()+1, "MODUL7", 1200, 30000, true));
+        }
+        catch (PromoCodeAlreadyExistsException e)
+        {
+            System.out.println(e.getMessage());
+        }
+
+        System.out.println("==========YANG MASUK DATABASE CUSTOMER============");
+        for(Customer customers : DatabaseCustomer.getCustomerDatabase())
+        {
+            System.out.println(customers);
+            System.out.println();
+        }
+
+        System.out.println("==========YANG MASUK DATABASE PROMO============");
+        for(Promo promos : DatabasePromo.getPromoDatabase())
+        {
+            System.out.println(promos);
+            System.out.println();
+        }
+
+        System.out.println("==========YANG MASUK DATABASE FOOD============");
+        for(Food foods : DatabaseFood.getFoodDatabase())
+        {
+            System.out.println(foods);
+            System.out.println();
+        }
+
+        DatabaseInvoice.addInvoice(new CashlessInvoice(DatabaseInvoice.getLastId()+1,
+                list1, DatabaseCustomer.getCustomerById(1), DatabasePromo.getPromoById(1)));
+        DatabaseInvoice.addInvoice(new CashlessInvoice(DatabaseInvoice.getLastId()+1,
+                list2, DatabaseCustomer.getCustomerById(2)));
 
         //Post Test
-        DatabasePromo.addPromo(new Promo(DatabasePromo.getLastid() + 1, "YEET", 5000, 20000, true));
-        DatabasePromo.addPromo(new Promo(DatabasePromo.getLastid() + 1, "YEET", 5000, 20000, false));
+        //DatabasePromo.addPromo(new Promo(DatabasePromo.getLastid() + 1, "YEET", 5000, 20000, true));
+        //DatabasePromo.addPromo(new Promo(DatabasePromo.getLastid() + 1, "YEET", 5000, 20000, false));
 
-        System.out.println("\nDaftar Promo: ");
-        for (Promo promo : DatabasePromo.getPromoDatabase())
-        {
-            System.out.println(promo);
-            System.out.println("");
-        }
+        //System.out.println("\nDaftar Promo: ");
+        //for (Promo promo : DatabasePromo.getPromoDatabase())
+        //{
+        //    System.out.println(promo);
+        //    System.out.println("");
+        //}
 
-        ArrayList<Food> foods1 = new ArrayList<>();
-        foods1.add(DatabaseFood.getFoodById(1));
-        ArrayList<Food> foods2 = new ArrayList<>();
-        foods2.add(DatabaseFood.getFoodById(2));
-        foods2.add(DatabaseFood.getFoodById(3));
+        //ArrayList<Food> foods1 = new ArrayList<>();
+        //foods1.add(DatabaseFood.getFoodById(1));
+        //ArrayList<Food> foods2 = new ArrayList<>();
+        //foods2.add(DatabaseFood.getFoodById(2));
+        //foods2.add(DatabaseFood.getFoodById(3));
 
-        DatabaseInvoice.addInvoice(new CashInvoice(DatabaseInvoice.getLastId() + 1, foods1, DatabaseCustomer.getCustomerById(1), 2000));
-        for (Invoice invoice : DatabaseInvoice.getInvoiceByCustomer(1))
-        {
-            invoice.setTotalPrice();
-        }
-        DatabaseInvoice.addInvoice(new CashlessInvoice(DatabaseInvoice.getLastId() + 1, foods2, DatabaseCustomer.getCustomerById(1), DatabasePromo.getPromoById(DatabasePromo.getLastid())));
-        for (Invoice invoice : DatabaseInvoice.getInvoiceByCustomer(1))
-        {
-            invoice.setTotalPrice();
-        }
+        //DatabaseInvoice.addInvoice(new CashInvoice(DatabaseInvoice.getLastId() + 1, foods1, DatabaseCustomer.getCustomerById(1), 2000));
+        //for (Invoice invoice : DatabaseInvoice.getInvoiceByCustomer(1))
+        //{
+        //   invoice.setTotalPrice();
+        //}
+        //DatabaseInvoice.addInvoice(new CashlessInvoice(DatabaseInvoice.getLastId() + 1, foods2, DatabaseCustomer.getCustomerById(1), DatabasePromo.getPromoById(DatabasePromo.getLastid())));
+        //for (Invoice invoice : DatabaseInvoice.getInvoiceByCustomer(1))
+        //{
+        //    invoice.setTotalPrice();
+        //}
 
-        for (Invoice invoice : DatabaseInvoice.getInvoiceDatabase())
-        {
-            System.out.println(invoice.toString() + "\n");
-        }
+        //for (Invoice invoice : DatabaseInvoice.getInvoiceDatabase())
+        //{
+        //   System.out.println(invoice.toString() + "\n");
+        //}
 
 
-        for (Invoice invoice : DatabaseInvoice.getInvoiceByCustomer(1))
-        {
-            invoice.setInvoiceStatus(InvoiceStatus.Finished);
-        }
+        //for (Invoice invoice : DatabaseInvoice.getInvoiceByCustomer(1))
+        //{
+        //    invoice.setInvoiceStatus(InvoiceStatus.Finished);
+        //}
 
-        DatabaseInvoice.addInvoice(new CashlessInvoice(DatabaseInvoice.getLastId() + 1, foods1, DatabaseCustomer.getCustomerById(2), DatabasePromo.getPromoById(DatabasePromo.getLastid())));
-        DatabasePromo.activePromo(DatabasePromo.getLastid());
+        //DatabaseInvoice.addInvoice(new CashlessInvoice(DatabaseInvoice.getLastId() + 1, foods1, DatabaseCustomer.getCustomerById(2), DatabasePromo.getPromoById(DatabasePromo.getLastid())));
+        //DatabasePromo.activePromo(DatabasePromo.getLastid());
 
-        for (Invoice invoice : DatabaseInvoice.getInvoiceDatabase())
-        {
-            invoice.setTotalPrice();
-        }
+        //for (Invoice invoice : DatabaseInvoice.getInvoiceDatabase())
+        //{
+        //    invoice.setTotalPrice();
+        //}
 
-        System.out.println("\nDaftar Invoice: ");
-        for (Invoice invoice : DatabaseInvoice.getInvoiceDatabase())
-        {
-            System.out.println(invoice.toString() + "\n");
-        }
+        //System.out.println("\nDaftar Invoice: ");
+        //for (Invoice invoice : DatabaseInvoice.getInvoiceDatabase())
+        //{
+        //    System.out.println(invoice.toString() + "\n");
+        //}
     }
 }

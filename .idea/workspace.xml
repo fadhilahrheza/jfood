@@ -75,26 +75,26 @@
       <screen x="0" y="0" width="1366" height="768" />
     </state>
     <state x="137" y="42" key="#com.intellij.execution.impl.EditConfigurationsDialog/0.0.1366.768@0.0.1366.768" timestamp="1585922837159" />
-    <state x="484" y="275" width="398" height="221" key="#com.intellij.refactoring.move.moveClassesOrPackages.MoveClassesOrPackagesDialog.classes" timestamp="1585920612776">
+    <state x="484" y="275" width="398" height="221" key="#com.intellij.refactoring.move.moveClassesOrPackages.MoveClassesOrPackagesDialog.classes" timestamp="1586425732742">
       <screen x="0" y="0" width="1366" height="768" />
     </state>
-    <state x="484" y="275" width="398" height="221" key="#com.intellij.refactoring.move.moveClassesOrPackages.MoveClassesOrPackagesDialog.classes/0.0.1366.768@0.0.1366.768" timestamp="1585920612776" />
-    <state width="1323" height="279" key="GridCell.Tab.0.bottom" timestamp="1586264100795">
+    <state x="484" y="275" width="398" height="221" key="#com.intellij.refactoring.move.moveClassesOrPackages.MoveClassesOrPackagesDialog.classes/0.0.1366.768@0.0.1366.768" timestamp="1586425732742" />
+    <state width="1323" height="279" key="GridCell.Tab.0.bottom" timestamp="1586428289162">
       <screen x="0" y="0" width="1366" height="768" />
     </state>
-    <state width="1323" height="279" key="GridCell.Tab.0.bottom/0.0.1366.768@0.0.1366.768" timestamp="1586264100795" />
-    <state width="1323" height="279" key="GridCell.Tab.0.center" timestamp="1586264100795">
+    <state width="1323" height="279" key="GridCell.Tab.0.bottom/0.0.1366.768@0.0.1366.768" timestamp="1586428289162" />
+    <state width="1323" height="279" key="GridCell.Tab.0.center" timestamp="1586428289162">
       <screen x="0" y="0" width="1366" height="768" />
     </state>
-    <state width="1323" height="279" key="GridCell.Tab.0.center/0.0.1366.768@0.0.1366.768" timestamp="1586264100795" />
-    <state width="1323" height="279" key="GridCell.Tab.0.left" timestamp="1586264100795">
+    <state width="1323" height="279" key="GridCell.Tab.0.center/0.0.1366.768@0.0.1366.768" timestamp="1586428289162" />
+    <state width="1323" height="279" key="GridCell.Tab.0.left" timestamp="1586428289161">
       <screen x="0" y="0" width="1366" height="768" />
     </state>
-    <state width="1323" height="279" key="GridCell.Tab.0.left/0.0.1366.768@0.0.1366.768" timestamp="1586264100795" />
-    <state width="1323" height="279" key="GridCell.Tab.0.right" timestamp="1586264100795">
+    <state width="1323" height="279" key="GridCell.Tab.0.left/0.0.1366.768@0.0.1366.768" timestamp="1586428289161" />
+    <state width="1323" height="279" key="GridCell.Tab.0.right" timestamp="1586428289162">
       <screen x="0" y="0" width="1366" height="768" />
     </state>
-    <state width="1323" height="279" key="GridCell.Tab.0.right/0.0.1366.768@0.0.1366.768" timestamp="1586264100795" />
+    <state width="1323" height="279" key="GridCell.Tab.0.right/0.0.1366.768@0.0.1366.768" timestamp="1586428289162" />
     <state width="1323" height="238" key="GridCell.Tab.1.bottom" timestamp="1585922989457">
       <screen x="0" y="0" width="1366" height="768" />
     </state>
@@ -111,10 +111,10 @@
       <screen x="0" y="0" width="1366" height="768" />
     </state>
     <state width="1323" height="238" key="GridCell.Tab.1.right/0.0.1366.768@0.0.1366.768" timestamp="1585922989457" />
-    <state x="391" y="211" key="com.intellij.ide.util.TipDialog" timestamp="1586263328915">
+    <state x="391" y="211" key="com.intellij.ide.util.TipDialog" timestamp="1586422657604">
       <screen x="0" y="0" width="1366" height="768" />
     </state>
-    <state x="391" y="211" key="com.intellij.ide.util.TipDialog/0.0.1366.768@0.0.1366.768" timestamp="1586263328915" />
+    <state x="391" y="211" key="com.intellij.ide.util.TipDialog/0.0.1366.768@0.0.1366.768" timestamp="1586422657604" />
     <state x="262" y="123" width="842" height="554" key="com.intellij.xdebugger.impl.breakpoints.ui.BreakpointsDialogFactory$2" timestamp="1585830913691">
       <screen x="0" y="0" width="1366" height="768" />
     </state>
@@ -123,6 +123,10 @@
       <screen x="0" y="0" width="1366" height="768" />
     </state>
     <state x="339" y="172" key="run.anything.popup/0.0.1366.768@0.0.1366.768" timestamp="1585823377982" />
+    <state x="346" y="89" width="672" height="678" key="search.everywhere.popup" timestamp="1586426057033">
+      <screen x="0" y="0" width="1366" height="768" />
+    </state>
+    <state x="346" y="89" width="672" height="678" key="search.everywhere.popup/0.0.1366.768@0.0.1366.768" timestamp="1586426057033" />
   </component>
   <component name="com.intellij.coverage.CoverageDataManagerImpl">
     <SUITE FILE_PATH="coverage/jfood$Unnamed.ic" NAME="Unnamed Coverage Results" MODIFIED="1585830839194" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="idea" COVERAGE_BY_TEST_ENABLED="false" COVERAGE_TRACING_ENABLED="false" />

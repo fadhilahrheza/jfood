@@ -65,12 +65,10 @@ public class DatabaseInvoice
      */
     public static ArrayList<Invoice> getInvoiceByCustomer(int customerId)
     {
-        ArrayList<Invoice> invoiceList = new ArrayList<Invoice>();
-        Customer customer = DatabaseCustomer.getCustomerById(customerId);
-
+        ArrayList<Invoice> invoiceList = new ArrayList<>();
         for(Invoice invoice : INVOICE_DATABASE)
         {
-            if(customer.equals(invoice.getCustomer()))
+            if(invoice.getCustomer().getId() == customerId)
             {
                 invoiceList.add(invoice);
             }

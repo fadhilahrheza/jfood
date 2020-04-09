@@ -43,7 +43,7 @@ public class DatabasePromo
      *
      * @return promo
      */
-    public static Promo getPromoById(int id)
+    public static Promo getPromoById(int id) throws PromoNotFoundException
     {
         for(Promo promo : PROMO_DATABASE)
         {
@@ -52,7 +52,7 @@ public class DatabasePromo
                 return promo;
             }
         }
-        return null;
+        throw new PromoNotFoundException(id);
     }
 
     /**
@@ -77,7 +77,7 @@ public class DatabasePromo
      *
      * @return true
      */
-    public static boolean addPromo(Promo promo)
+    public static boolean addPromo(Promo promo) throws PromoCodeAlreadyExistsException
     {
         for(Promo promoLagi : PROMO_DATABASE)
         {
@@ -89,7 +89,7 @@ public class DatabasePromo
         PROMO_DATABASE.add(promo);
         lastid = promo.getId();
 
-        return true;
+        throw new PromoCodeAlreadyExistsException(promo);
     }
 
     /**
@@ -133,7 +133,7 @@ public class DatabasePromo
      *
      * @return true
      */
-    public static boolean removePromo(int id)
+    public static boolean removePromo(int id) throws PromoNotFoundException
     {
         for(Promo promo : PROMO_DATABASE)
         {
@@ -143,6 +143,6 @@ public class DatabasePromo
                 return true;
             }
         }
-        return false;
+        throw new PromoNotFoundException(id);
     }
 }
