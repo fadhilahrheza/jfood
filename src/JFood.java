@@ -12,9 +12,12 @@ import java.text.SimpleDateFormat;
     {
         //CS
         Location baselocation = new Location("Jakarta", "Sepi", "Jakarta");
+
+        DatabaseSeller.addSeller(new Seller(DatabaseSeller.getLastid()+1, "Eja", "Eja@gmail.com", "081413565xxx", baselocation));
+
         try
         {
-            DatabaseSeller.addSeller(new Seller(DatabaseSeller.getLastid()+1, "Eja", "Eja@gmail.com", "081413565xxx", baselocation));
+            DatabaseFood.addFood(new Food(DatabaseFood.getLastId() + 1, "Thai Tea", DatabaseSeller.getSellerById(1), 5000, FoodCategory.Beverages));
         }
         catch (SellerNotFoundException e)
         {
@@ -23,14 +26,22 @@ import java.text.SimpleDateFormat;
 
         try
         {
-            DatabaseFood.addFood(new Food(DatabaseFood.getLastId() + 1, "Thai Tea", DatabaseSeller.getSellerById(1), 5000, FoodCategory.Beverages));
             DatabaseFood.addFood(new Food(DatabaseFood.getLastId() + 1, "Latte", DatabaseSeller.getSellerById(1), 12000, FoodCategory.Beverages));
-            DatabaseFood.addFood(new Food(DatabaseFood.getLastId() + 1, "Nasi", DatabaseSeller.getSellerById(1), 20000, FoodCategory.Japanese));
         }
-        catch (FoodNotFoundException e)
+        catch (SellerNotFoundException e)
         {
             System.out.println(e.getMessage());
         }
+
+        try
+        {
+            DatabaseFood.addFood(new Food(DatabaseFood.getLastId() + 1, "Nasi", DatabaseSeller.getSellerById(1), 20000, FoodCategory.Japanese));
+        }
+        catch (SellerNotFoundException e)
+        {
+            System.out.println(e.getMessage());
+        }
+
         ArrayList<Food> list1 = new ArrayList<Food>();
         try
         {
@@ -170,10 +181,32 @@ import java.text.SimpleDateFormat;
             System.out.println();
         }
 
-        DatabaseInvoice.addInvoice(new CashlessInvoice(DatabaseInvoice.getLastId()+1,
-                list1, DatabaseCustomer.getCustomerById(1), DatabasePromo.getPromoById(1)));
-        DatabaseInvoice.addInvoice(new CashlessInvoice(DatabaseInvoice.getLastId()+1,
-                list2, DatabaseCustomer.getCustomerById(2)));
+        try
+        {
+            DatabaseInvoice.addInvoice(new CashlessInvoice(DatabaseInvoice.getLastId()+1, list1, DatabaseCustomer.getCustomerById(1), DatabasePromo.getPromoById(1)));
+        }
+        catch (CustomerNotFoundException e)
+        {
+            System.out.println(e.getMessage());
+        }
+        catch (PromoNotFoundException e)
+        {
+            System.out.println(e.getMessage());
+        }
+
+        try
+        {
+            DatabaseInvoice.addInvoice(new CashlessInvoice(DatabaseInvoice.getLastId()+1, list2, DatabaseCustomer.getCustomerById(30)));
+        }
+        catch (CustomerNotFoundException e)
+        {
+            System.out.println(e.getMessage());
+        }
+
+        for (Invoice invoices : DatabaseInvoice.getInvoiceDatabase())
+        {
+            new Thread(new PriceCalculator(invoices)).start();
+        }
 
         //Post Test
         //DatabasePromo.addPromo(new Promo(DatabasePromo.getLastid() + 1, "YEET", 5000, 20000, true));

@@ -18,6 +18,6 @@ public class PromoNotFoundException extends Exception
     @Override
     public String getMessage()
     {
-        return super.getMessage() + promo_error + "not found";
+        return super.getMessage() + promo_error + " not found";
     }
 }

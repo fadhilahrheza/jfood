@@ -18,6 +18,6 @@ public class FoodNotFoundException extends Exception
     @Override
     public String getMessage()
     {
-        return super.getMessage() + food_error + "not found";
+        return super.getMessage() + food_error + " not found";
     }
 }

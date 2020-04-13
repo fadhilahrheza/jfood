@@ -18,6 +18,6 @@ public class SellerNotFoundException extends Exception
     @Override
     public String getMessage()
     {
-        return super.getMessage() + seller_error + "not found";
+        return super.getMessage() + seller_error + " not found";
     }
 }

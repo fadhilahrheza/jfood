@@ -18,6 +18,6 @@ public class CustomerNotFoundException extends Exception
     @Override
     public String getMessage()
     {
-        return super.getMessage() + customer_error + "not found";
+        return super.getMessage() + customer_error + " not found";
     }
 }
