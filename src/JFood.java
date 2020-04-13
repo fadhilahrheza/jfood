@@ -181,6 +181,7 @@ import java.text.SimpleDateFormat;
             System.out.println();
         }
 
+        //Post Test
         try
         {
             DatabaseInvoice.addInvoice(new CashlessInvoice(DatabaseInvoice.getLastId()+1, list1, DatabaseCustomer.getCustomerById(1), DatabasePromo.getPromoById(1)));
@@ -215,7 +216,5 @@ import java.text.SimpleDateFormat;
         {
             new Thread(new PriceCalculator(invoices)).start();
         }
-
-        //Post Test
     }
 }
