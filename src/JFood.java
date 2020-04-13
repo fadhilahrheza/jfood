@@ -193,12 +193,20 @@ import java.text.SimpleDateFormat;
         {
             System.out.println(e.getMessage());
         }
+        catch (OngoingInvoiceAlreadyExistsException e)
+        {
+            System.out.println(e.getMessage());
+        }
 
         try
         {
             DatabaseInvoice.addInvoice(new CashlessInvoice(DatabaseInvoice.getLastId()+1, list2, DatabaseCustomer.getCustomerById(30)));
         }
         catch (CustomerNotFoundException e)
+        {
+            System.out.println(e.getMessage());
+        }
+        catch (OngoingInvoiceAlreadyExistsException e)
         {
             System.out.println(e.getMessage());
         }
@@ -209,56 +217,5 @@ import java.text.SimpleDateFormat;
         }
 
         //Post Test
-        //DatabasePromo.addPromo(new Promo(DatabasePromo.getLastid() + 1, "YEET", 5000, 20000, true));
-        //DatabasePromo.addPromo(new Promo(DatabasePromo.getLastid() + 1, "YEET", 5000, 20000, false));
-
-        //System.out.println("\nDaftar Promo: ");
-        //for (Promo promo : DatabasePromo.getPromoDatabase())
-        //{
-        //    System.out.println(promo);
-        //    System.out.println("");
-        //}
-
-        //ArrayList<Food> foods1 = new ArrayList<>();
-        //foods1.add(DatabaseFood.getFoodById(1));
-        //ArrayList<Food> foods2 = new ArrayList<>();
-        //foods2.add(DatabaseFood.getFoodById(2));
-        //foods2.add(DatabaseFood.getFoodById(3));
-
-        //DatabaseInvoice.addInvoice(new CashInvoice(DatabaseInvoice.getLastId() + 1, foods1, DatabaseCustomer.getCustomerById(1), 2000));
-        //for (Invoice invoice : DatabaseInvoice.getInvoiceByCustomer(1))
-        //{
-        //   invoice.setTotalPrice();
-        //}
-        //DatabaseInvoice.addInvoice(new CashlessInvoice(DatabaseInvoice.getLastId() + 1, foods2, DatabaseCustomer.getCustomerById(1), DatabasePromo.getPromoById(DatabasePromo.getLastid())));
-        //for (Invoice invoice : DatabaseInvoice.getInvoiceByCustomer(1))
-        //{
-        //    invoice.setTotalPrice();
-        //}
-
-        //for (Invoice invoice : DatabaseInvoice.getInvoiceDatabase())
-        //{
-        //   System.out.println(invoice.toString() + "\n");
-        //}
-
-
-        //for (Invoice invoice : DatabaseInvoice.getInvoiceByCustomer(1))
-        //{
-        //    invoice.setInvoiceStatus(InvoiceStatus.Finished);
-        //}
-
-        //DatabaseInvoice.addInvoice(new CashlessInvoice(DatabaseInvoice.getLastId() + 1, foods1, DatabaseCustomer.getCustomerById(2), DatabasePromo.getPromoById(DatabasePromo.getLastid())));
-        //DatabasePromo.activePromo(DatabasePromo.getLastid());
-
-        //for (Invoice invoice : DatabaseInvoice.getInvoiceDatabase())
-        //{
-        //    invoice.setTotalPrice();
-        //}
-
-        //System.out.println("\nDaftar Invoice: ");
-        //for (Invoice invoice : DatabaseInvoice.getInvoiceDatabase())
-        //{
-        //    System.out.println(invoice.toString() + "\n");
-        //}
     }
 }
