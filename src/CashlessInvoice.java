@@ -88,9 +88,9 @@ public class CashlessInvoice extends Invoice
     {
         String foodName = "";
         SimpleDateFormat sdf = new SimpleDateFormat("dd MMMM yyyy");
-        for(int i = 0; 1 < getFoods().size(); i++)
+        for(Food foodlist : getFoods())
         {
-            foodName = foodName + getFoods().get(i).getName();
+            foodName = foodName + foodlist.getName();
         }
         foodName = foodName.substring(0, foodName.length() - 2);
 
