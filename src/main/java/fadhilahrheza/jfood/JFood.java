@@ -14,6 +14,7 @@ public class JFood
 {        
     public static void main(String[] args)
     {
+        //CS
         SpringApplication.run(JFood.class, args);
         Location location1 = new Location("Jakarta", "Lockdown", "Jakarta");
         Location location2 = new Location("Depok", "Lockdown", "Depok");
@@ -34,6 +35,8 @@ public class JFood
         {
             e.getMessage();
         }
+
+        //PT
 
     }
 }
