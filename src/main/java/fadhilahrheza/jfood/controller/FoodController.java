@@ -23,17 +23,17 @@ public class FoodController
         try
         {
             food = DatabaseFood.getFoodById(id);
+            return food;
         }
         catch (FoodNotFoundException e)
         {
             e.getMessage();
             return null;
         }
-        return food;
     }
 
-    @RequestMapping(value = "/sellerid", method = RequestMethod.GET)
-    public ArrayList<Food> getFoodBySeller(int sellerid)
+    @RequestMapping(value = "/seller/{sellerid}", method = RequestMethod.GET)
+    public ArrayList<Food> getFoodBySeller(@PathVariable int sellerid)
     {
         {
             ArrayList<Food> foodsBySeller = null;
@@ -42,13 +42,13 @@ public class FoodController
         }
     }
 
-    @RequestMapping(value = "/{category}", method = RequestMethod.GET)
+    @RequestMapping(value = "/category/{category}", method = RequestMethod.GET)
     public ArrayList<Food> getFoodByCategory(@PathVariable FoodCategory category)
     {
         {
-            ArrayList<Food> foodlagi = null;
-            foodlagi = DatabaseFood.getFoodByCategory(category);
-            return foodlagi;
+            ArrayList<Food> foodByCategory = null;
+            foodByCategory = DatabaseFood.getFoodByCategory(category);
+            return foodByCategory;
         }
     }
 

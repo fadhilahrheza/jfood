@@ -69,14 +69,14 @@ public class DatabaseCustomer
         {
             if (customerLagi.getEmail().equals(customerLagi.getEmail()))
             {
-                return false;
+                throw new EmailAlreadyExistsException(customer);
             }
         }
 
         CUSTOMER_DATABASE.add(customer);
         lastid = customer.getId();
 
-        throw new EmailAlreadyExistsException(customer);
+        return true;
     }
 
     /**

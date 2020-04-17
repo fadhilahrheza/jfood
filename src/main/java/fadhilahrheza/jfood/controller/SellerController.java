@@ -16,7 +16,7 @@ public class SellerController
         return DatabaseSeller.getSellerDatabase();
     }
 
-    @RequestMapping(value = "/{sellerId}", method = RequestMethod.GET)
+    @RequestMapping(value = "/{id}", method = RequestMethod.GET)
     public Seller getSellerById(@PathVariable int id)
     {
         Seller seller = null;

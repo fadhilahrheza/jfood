@@ -65,7 +65,7 @@ public class DatabasePromo
     {
         for(Promo promo : PROMO_DATABASE)
         {
-            if(code == promo.getCode())
+            if(promo.getCode().equals(code))
             {
                 return promo;
             }

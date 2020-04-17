@@ -3,11 +3,11 @@ package fadhilahrheza.jfood.controller;
 import fadhilahrheza.jfood.*;
 import org.springframework.web.bind.annotation.*;
 
-@RequestMapping("/customer")
+@RequestMapping({"/customer"})
 @RestController
 public class CustomerController
 {
-    @RequestMapping("")
+    @RequestMapping({""})
     public String indexPage(@RequestParam(value="name", defaultValue="world") String name)
     {
         return "Hello " + name;
@@ -47,8 +47,7 @@ public class CustomerController
     }
 
     @RequestMapping(value = "/login", method = RequestMethod.POST)
-    public Customer loginCustomer(@RequestParam(value="name") String name,
-                                  @RequestParam(value="email") String email,
+    public Customer loginCustomer(@RequestParam(value="email") String email,
                                   @RequestParam(value="password") String password)
     {
         Customer customerlogin = null;
