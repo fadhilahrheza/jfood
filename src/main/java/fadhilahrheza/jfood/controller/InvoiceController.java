@@ -32,31 +32,30 @@ public class InvoiceController
         return invoice;
     }
 
-    @RequestMapping(value = "/customer/{customerid}", method = RequestMethod.GET)
-    public ArrayList<Invoice> getInvoiceByCustomerId(@PathVariable int custumerid)
+    @RequestMapping(value = "/customer/{customerId}", method = RequestMethod.GET)
+    public ArrayList<Invoice> getInvoiceByCustomerId(@PathVariable int custumerId)
     {
         {
-            ArrayList<Invoice> invoiceByCustomer = null;
-            invoiceByCustomer = DatabaseInvoice.getInvoiceByCustomer(custumerid);
+            ArrayList<Invoice> invoiceByCustomer = new ArrayList<>();
+            invoiceByCustomer = DatabaseInvoice.getInvoiceByCustomer(custumerId);
             return invoiceByCustomer;
         }
     }
 
-    @RequestMapping(value = "/customer/{customerid}", method = RequestMethod.PUT)
+    @RequestMapping(value = "/invoiceStatus/{id}", method = RequestMethod.PUT)
     public Invoice changeInvoiceStatus(@PathVariable int id,
-                                       @RequestParam(value = "status") InvoiceStatus status)
+                                       @RequestParam(value = "status") InvoiceStatus status) throws InvoiceNotFoundException
     {
-        Invoice changedInvoice;
+        Invoice changedInvoice = DatabaseInvoice.getInvoiceById(id);
         try
         {
-            changedInvoice = DatabaseInvoice.getInvoiceById(id);
+            DatabaseInvoice.changeInvoiceStatus(id, status);
         }
-        catch (InvoiceNotFoundException e)
+        catch (Exception e)
         {
             e.getMessage();
             return null;
         }
-        changeInvoiceStatus(id, status);
         return changedInvoice;
     }
 
@@ -70,117 +69,84 @@ public class InvoiceController
         catch (InvoiceNotFoundException e)
         {
             e.getMessage();
+            return false;
         }
         return true;
     }
 
     @RequestMapping(value = "/createCashInvoice", method = RequestMethod.POST)
-    public Invoice addCashInvoice(@RequestParam(value = "foodlist")int foodlist,
-                                  @RequestParam(value = "customerId")int customerId,
-                                  @RequestParam(value = "deliveryFee")int deliveryFee)
+    public Invoice addCashInvoice(@RequestParam(value = "makanan") ArrayList<Integer> makanan,
+                                  @RequestParam(value = "customer")int customer,
+                                  @RequestParam(value = "deliveryFee", defaultValue = "0") int deliveryFee)
     {
         ArrayList<Food> foodlagi = new ArrayList<>();
 
-        for (int i = 0; i < foodlagi.size(); i++    )
+        for (int food : makanan)
         {
             try
             {
-                foodlagi.add(DatabaseFood.getFoodById(i));
+                foodlagi.add(DatabaseFood.getFoodById(food));
             }
             catch (FoodNotFoundException e)
             {
-                e.getMessage();
-                return null;
+                System.out.println(e.getMessage());
             }
         }
 
+        Invoice invoice = null;
         try
         {
-            DatabaseInvoice.addInvoice(new CashInvoice(DatabaseInvoice.getLastId() + 1, foodlagi, DatabaseCustomer.getCustomerById(customerId)));
+            invoice = new CashInvoice(DatabaseInvoice.getLastId() + 1, foodlagi, DatabaseCustomer.getCustomerById(customer), deliveryFee);
+            DatabaseInvoice.addInvoice(invoice);
         }
-        catch (CustomerNotFoundException e)
+        catch (CustomerNotFoundException | OngoingInvoiceAlreadyExistsException e)
         {
-            e.getMessage();
-        }
-        catch (OngoingInvoiceAlreadyExistsException e)
-        {
-            e.getMessage();
-        }
-
-        try
-        {
-            DatabaseInvoice.getInvoiceById(DatabaseInvoice.getLastId()).setTotalPrice();
-        }
-        catch (InvoiceNotFoundException e)
-        {
-            e.getMessage();
+            System.out.println(e.getMessage());
             return null;
         }
-
-        try
-        {
-            return DatabaseInvoice.getInvoiceById(DatabaseInvoice.getLastId());
-        }
-        catch (InvoiceNotFoundException e)
-        {
-            e.getMessage();
-            return null;
-        }
+        invoice.setTotalPrice();
+        return invoice;
     }
 
-
-    @RequestMapping(value = "/createCashInvoice", method = RequestMethod.POST)
-    public Invoice addCashlessInvoice(@RequestParam(value = "foodlist")int foodlist,
-                                  @RequestParam(value = "customerId")int customerId,
-                                  @RequestParam(value = "deliveryFee")int deliveryFee)
+    @RequestMapping(value = "/createCashlessInvoice", method = RequestMethod.POST)
+    public Invoice addCashlessInvoice(@RequestParam(value = "makanan") ArrayList<Integer> makanan,
+                                      @RequestParam(value = "customer") int customer,
+                                      @RequestParam(value = "promoCode", defaultValue = "") String promoCode)
     {
-        Invoice cashlessInvoice = null;
         ArrayList<Food> foodlagi = new ArrayList<>();
 
-        for (int i = 0; i < foodlagi.size(); i++    )
+        for (int food : makanan)
         {
             try
             {
-                foodlagi.add(DatabaseFood.getFoodById(i));
+                foodlagi.add(DatabaseFood.getFoodById(food));
             }
             catch (FoodNotFoundException e)
             {
-                e.getMessage();
-                return null;
+                System.out.println(e.getMessage());
             }
         }
 
+        Invoice newCashlessInvoice = null;
         try
         {
-            DatabaseInvoice.addInvoice(new CashInvoice(DatabaseInvoice.getLastId() + 1, foodlagi, DatabaseCustomer.getCustomerById(customerId)));
+            newCashlessInvoice = new CashlessInvoice(DatabaseInvoice.getLastId() + 1, foodlagi, DatabaseCustomer.getCustomerById(customer), DatabasePromo.getPromoByCode(promoCode));
         }
         catch (CustomerNotFoundException e)
         {
             e.getMessage();
         }
+
+        try
+        {
+            DatabaseInvoice.addInvoice(newCashlessInvoice);
+        }
         catch (OngoingInvoiceAlreadyExistsException e)
         {
             e.getMessage();
-        }
-
-        try
-        {
-            DatabaseInvoice.getInvoiceById(DatabaseInvoice.getLastId()).setTotalPrice();
-        }
-        catch (InvoiceNotFoundException e)
-        {
-            e.getMessage();
             return null;
         }
-
-        try
-        {
-            return DatabaseInvoice.getInvoiceById(DatabaseInvoice.getLastId());
-        }
-        catch (InvoiceNotFoundException e)
-        {
-            e.getMessage();
-            return null;
-        }
+        newCashlessInvoice.setTotalPrice();
+        return newCashlessInvoice;
     }
 }

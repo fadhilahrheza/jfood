@@ -87,15 +87,15 @@ public class DatabaseInvoice
         int customerId = invoice.getCustomer().getId();
         for (Invoice invoiceLagi : INVOICE_DATABASE)
         {
-            if (invoiceLagi.getCustomer().getId() == customerId && invoiceLagi.getInvoiceStatus() == InvoiceStatus.Ongoing)
+            if (invoiceLagi.getCustomer().getId() == customerId && invoiceLagi.getInvoiceStatus().equals(InvoiceStatus.Ongoing))
             {
-                return false;
+                throw new OngoingInvoiceAlreadyExistsException(invoice);
             }
         }
         INVOICE_DATABASE.add(invoice);
         lastid = invoice.getId();
 
-        throw new OngoingInvoiceAlreadyExistsException(invoice);
+        return false;
     }
 
     /**

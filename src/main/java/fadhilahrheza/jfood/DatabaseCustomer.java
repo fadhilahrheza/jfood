@@ -67,7 +67,7 @@ public class DatabaseCustomer
     {
         for(Customer customerLagi : CUSTOMER_DATABASE)
         {
-            if (customerLagi.getEmail().equals(customerLagi.getEmail()))
+            if (customerLagi.getEmail().equals(customer.getEmail()))
             {
                 throw new EmailAlreadyExistsException(customer);
             }
