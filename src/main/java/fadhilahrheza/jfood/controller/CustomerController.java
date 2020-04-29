@@ -3,6 +3,7 @@ package fadhilahrheza.jfood.controller;
 import fadhilahrheza.jfood.*;
 import org.springframework.web.bind.annotation.*;
 
+@CrossOrigin(origins = "*", allowedHeaders = "*")
 @RequestMapping({"/customer"})
 @RestController
 public class CustomerController
