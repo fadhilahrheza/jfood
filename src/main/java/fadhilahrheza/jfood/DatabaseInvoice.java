@@ -3,7 +3,8 @@ import java.lang.reflect.Array;
 import java.util.ArrayList;
 
 /**
- * Class DatabaseInvoice. Contain the database of Invoice
+ * Class DatabaseInvoice.
+ * Contain the database of Invoice
  *
  * @author Fadhilah Rheza P
  * @version 1.0
@@ -15,12 +16,6 @@ public class DatabaseInvoice
      */
     private static ArrayList<Invoice> INVOICE_DATABASE = new ArrayList<Invoice>();
     private static int lastid = 0;
-
-    /**
-     * Constructor for objects of class DatabaseInvoice
-     *
-     * @param listInvoice (the list of invoice in the database)
-     */
 
     /**
      * Get the Array list of InvoiceDatabase
@@ -107,8 +102,9 @@ public class DatabaseInvoice
     {
         for(Invoice invoice : INVOICE_DATABASE)
         {
-            if(status.equals(InvoiceStatus.Ongoing))
+            if(invoice.getId() == id && invoice.getInvoiceStatus().equals(InvoiceStatus.Ongoing))
             {
+                invoice.setInvoiceStatus(status);
                 return true;
             }
         }

@@ -8,6 +8,7 @@ import java.text.SimpleDateFormat;
 
 /**
  * Cashliess Invoice Class.
+ * The class manage transaction in JFood
  *
  * @author Fadhilah Rheza P
  * @version 1.0
@@ -18,7 +19,7 @@ public class CashlessInvoice extends Invoice
      * Below are the variable for class CashlessInvoice
      */
     private static final PaymentType PAYMENT_TYPE = PaymentType.Cashless;
-    private Promo promo ;
+    private Promo promo;
 
     /**
      * Constructor no.1
@@ -69,8 +70,6 @@ public class CashlessInvoice extends Invoice
     
     /**
      * Sets the TotalPrice of the CashlessInvoice
-     * 
-     * @param TotalPrice
      */
     public void setTotalPrice()
     {
@@ -79,12 +78,15 @@ public class CashlessInvoice extends Invoice
         {
             super.totalPrice = super.totalPrice + foodList.getPrice();
         }
-        if (promo != null && promo.getActive() == true && super.totalPrice > promo.getMinPrice());
+        if (promo != null && promo.getActive() == true && super.totalPrice > promo.getMinPrice())
         {
-            totalPrice = totalPrice - promo.getDiscount();
+            super.totalPrice = super.totalPrice - promo.getDiscount();
         }
     }
-    
+
+    /**
+     * The method below to print CashlessInvoice
+     */
     public String toString()
     {
         String foodName = "";

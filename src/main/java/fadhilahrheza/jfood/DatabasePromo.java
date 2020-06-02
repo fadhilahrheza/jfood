@@ -2,7 +2,8 @@ package fadhilahrheza.jfood;
 import java.util.ArrayList;
 
 /**
- * Here is the class DatabasePromo. Contain the database of promo
+ * Here is the class DatabasePromo.
+ * Contain the database of promo
  * 
  * @author Fadhilah Rheza P
  * @version 1.0
@@ -14,10 +15,6 @@ public class DatabasePromo
      */
     private static ArrayList<Promo> PROMO_DATABASE = new ArrayList<Promo>();
     private static int lastid = 0;
-
-    /**
-     * Constructor for objects of class DatabasePromo
-     */
 
     /**
      * Get the Array list of PromoDatabase
@@ -84,13 +81,12 @@ public class DatabasePromo
         {
             if (promoLagi.getCode().equals(promo.getCode()))
             {
-                return false;
+                throw new PromoCodeAlreadyExistsException(promo);
             }
         }
         PROMO_DATABASE.add(promo);
         lastid = promo.getId();
-
-        throw new PromoCodeAlreadyExistsException(promo);
+        return true;
     }
 
     /**

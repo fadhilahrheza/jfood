@@ -2,7 +2,8 @@ package fadhilahrheza.jfood;
 import java.util.ArrayList;
 
 /**
- * Write a description of class DatabaseSeller here.
+ * Here is the class DatabaseSeller
+ * Contain the database of seller.
  *
  * @author Fadhilah Rheza P
  * @version 1.0
@@ -14,10 +15,6 @@ public class DatabaseSeller
      */
     private static ArrayList<Seller> SELLER_DATABASE = new ArrayList<Seller>();
     private static int lastid = 0;
-
-    /**
-     * Constructor for objects of class DatabaseSeller
-     */
 
     /**
      * Get the Array list of SellerDatabase

@@ -2,7 +2,8 @@ package fadhilahrheza.jfood;
 import java.util.ArrayList;
 
 /**
- * Class DatabaseCustomer. Contain the database of the customer
+ * Class DatabaseCustomer.
+ * Contain the database of the customer
  *
  * @author Fadhilah Rheza P
  * @version 1.0
@@ -14,12 +15,6 @@ public class DatabaseCustomer
      */
     private static ArrayList<Customer> CUSTOMER_DATABASE = new ArrayList<Customer>();
     private static int lastid = 0;
-
-    /**
-     * Constructor for objects of class DatabaseFood
-     * 
-     * @param listFood (the list of food in the database)
-     */
 
     /**
      * Get the Array list of CustomerDatabase
@@ -80,7 +75,7 @@ public class DatabaseCustomer
     }
 
     /**
-     * Removing customer to database
+     * Removing customer from database
      *
      * @return true
      */
@@ -97,6 +92,13 @@ public class DatabaseCustomer
         throw new CustomerNotFoundException(id);
     }
 
+    /**
+     * Get customer login
+     *
+     * @param email
+     * @param password
+     * @return Customer
+     */
     public static Customer getCustomerLogin(String email, String password)
     {
         for (Customer customerlagi : CUSTOMER_DATABASE)

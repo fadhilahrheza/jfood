@@ -146,11 +146,9 @@ public class Food
     {
         return "Id = " + getId() + "\nNama = " + getName() + "\nSeller = " + getSeller().getName() + "\nCity = " + getSeller().getLocation().getCity() + "\nPrice = " + getPrice() + "\nCategory = " + getCategory();
     }
-    
+
     /**
-     * To print out (printData)
-     * 
-     * @param name is used
+     * The method below to print Food
      */
     public void printData()
     {

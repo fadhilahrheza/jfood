@@ -136,29 +136,20 @@ public class Seller
     {
         this.location = location;
     }
-    
+
     /**
-     * To print out (printData)
-     * 
-     * @param name is used
+     * To print out Seller's data
      */
     public void printData()
     {
         System.out.println(id + name + email + phoneNumber + location);
     }
-    
+
+    /**
+     * Method to print Seller
+     */
     public String toString()
     {
         return "Id = " + getId() + "\nNama = " + getName() + "\nPhone Number = " + getPhoneNumber() + "\nLocation = " + getLocation();
-    }
-    
-    /**
-     * To print out (printName)
-     * 
-     * @param name is used
-     */
-    public void printName()
-    {
-        System.out.println(name);
     }
 }

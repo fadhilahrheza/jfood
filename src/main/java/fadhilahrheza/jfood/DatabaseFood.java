@@ -5,7 +5,8 @@ import java.lang.reflect.Array;
 import java.util.ArrayList;
 
 /**
- * Class DatabaseFood. Contain the database of Food
+ * Class DatabaseFood.
+ * Contain the database of Food
  *
  * @author Fadhilah Rheza P
  * @version 1.0
@@ -18,11 +19,6 @@ public class DatabaseFood
     private static ArrayList<Food> FOOD_DATABASE = new ArrayList<Food>();
     private static int lastid = 0;
 
-    /**
-     * Constructor for objects of class DatabaseFood
-     * 
-     * @param listFood (the list of food in the database)
-     */
 
     /**
      * Get the Array list of FoodDatabase

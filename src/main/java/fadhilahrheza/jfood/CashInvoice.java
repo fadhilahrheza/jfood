@@ -9,6 +9,7 @@ import static java.lang.System.*;
 
 /**
  * CashInvoice Class.
+ * The class manage transaction in JFood
  *
  * @author Fadhilah Rheza P
  * @version 1.0
@@ -68,11 +69,9 @@ public class CashInvoice extends Invoice
     {
         this.deliveryFee = deliveryFee;
     }
-    
+
     /**
      * Sets the TotalPrice of the CashInvoice
-     * 
-     * @param TotalPrice
      */
     public void setTotalPrice()
     {
@@ -83,9 +82,12 @@ public class CashInvoice extends Invoice
         }
         super.totalPrice = super.totalPrice + deliveryFee;
     }
-    
-   public String toString()
-   {
+
+    /**
+     * The method below to print CashInvoice
+     */
+    public String toString()
+    {
        String foodName = "";
        SimpleDateFormat sdf = new SimpleDateFormat("dd MMMM yyyy");
        for(Food foodList : getFoods())

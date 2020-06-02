@@ -184,9 +184,7 @@ public class Customer
     }
     
     /**
-     * Sets the join date of the customer
-     * 
-     * @param joinDate
+     * Sets the join date of the customer in gregorian calendar
      */
     public void setJoinDate(int year, int month, int dayOfMonth)
     {
@@ -194,15 +192,16 @@ public class Customer
     }
     
     /**
-     * To print out (printData)
-     * 
-     * @param name is used
+     * To print out Customer names(printName)
      */
     public void printname()
     {
         System.out.println(name);
     }
-    
+
+    /**
+     * The method below to print Customer
+     */
     public String toString()
     {
         String date = "";

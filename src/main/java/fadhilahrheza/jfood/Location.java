@@ -90,19 +90,16 @@ public class Location
     {
         this.description = description;
     }
-    
+
+    /**
+     * To print out Location
+     *
+     * @return province
+     * @return city
+     * @return description
+     */
     public String toString()
     {
         return "Province = " + getProvince() + "\nCity = " + getCity() + "\nDescription = " + getDescription();
-    }
-    
-    /**
-     * To print out (printData)
-     * 
-     * @param province is used
-     */
-    public void printData()
-    {
-        System.out.println(province);
     }
 }

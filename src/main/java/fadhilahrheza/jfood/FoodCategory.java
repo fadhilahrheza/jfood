@@ -1,6 +1,6 @@
 package fadhilahrheza.jfood;
 /**
- * Enumeration class FoodCategory - write a description of the enum class here
+ * Enumeration class FoodCategory
  *
  * @author Fadhilah Rheza P
  * @version 1.0
@@ -15,14 +15,26 @@ public enum FoodCategory
     Noodles("Noodles"),
     Bakery("Bakery"),
     Japanese("Japanese");
-    
+
+    /**
+     * Below are the variable for class FoodCategory
+     */
     private String category;
-    
+
+    /**
+     * Constructor for objects of class FoodCategory
+     *
+     * @param category
+     */
     FoodCategory(String category)
     {
         this.category = category;
     }
-    
+
+    /**
+     * To return category
+     * @return category
+     */
     public String toString()
     {
         return category;

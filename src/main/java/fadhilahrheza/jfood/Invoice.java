@@ -24,15 +24,13 @@ public abstract class Invoice
     protected int totalPrice;
     private Customer customer;
     private InvoiceStatus invoiceStatus;
-    
+
     /**
      * Constructor for objects of class Invoice
-     * 
-     * @param id (invoice's id)
-     * @param food (invoice's food id)
-     * @param date (invoice's date)
-     * @param totalprice (invoice's total price)
-     * @param customer (invoice's customer)
+     *
+     * @param id
+     * @param foods
+     * @param customer
      */
     public Invoice(int id, ArrayList<Food> foods, Customer customer)
     {
@@ -123,7 +121,7 @@ public abstract class Invoice
     /**
      * Sets the food id of the invoice
      * 
-     * @param idFood
+     * @param foods
      */
     public void setFoods(ArrayList<Food> foods)
     {
@@ -139,21 +137,21 @@ public abstract class Invoice
     {
         this.date = date;
     }
-    
+
     /**
-     * Sets the date of the invoice
-     * 
-     * @param date
+     * Sets the gregorian calendar of the invoice
+     *
+     * @param year
+     * @param month
+     * @param dayOfMonth
      */
     public void setDate(int year, int month, int dayOfMonth)
     {
         this.date = new GregorianCalendar(year, month-1,dayOfMonth);
     }
-    
+
     /**
      * Sets the total price of the invoice
-     * 
-     * @param toalPrice
      */
     public abstract void setTotalPrice();
     
@@ -170,16 +168,15 @@ public abstract class Invoice
     /**
      * Sets the InvoiceStatus of the invoice
      * 
-     * @param invoiceStatus
+     * @param status
      */
-    public void setInvoiceStatus(InvoiceStatus status)
+    public void setInvoiceStatus(InvoiceStatus invoiceStatus)
     {
         this.invoiceStatus=invoiceStatus;
     }
     
     /**
-     * To print out
-     *
+     * To print out invoice
      */
     public abstract String toString();;
 }
