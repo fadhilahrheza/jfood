@@ -155,7 +155,7 @@ public class InvoiceController
             System.out.println(e.getMessage());
             return null;
         }
-        invoice.setTotalPrice(); //just incase gk masuk database
+        invoice.setTotalPrice();//just incase gk masuk database
         return invoice;
     }
 
